@@ -236,41 +236,42 @@
     </main>
 
     <script>
-        document.getElementById('confirmar-form').addEventListener('submit', function(event) {
-            event.preventDefault();
+       document.getElementById('confirmar-form').addEventListener('submit', function(event) {
+    event.preventDefault();
 
-            const nombre = document.getElementById('nombre').value.trim();
-            const invitados = document.getElementById('invitados').value.trim();
+    const nombre = document.getElementById('nombre').value.trim();
+    const invitados = document.getElementById('invitados').value.trim();
 
-            // Validaciones
-            if (!nombre || !invitados) {
-                document.getElementById('error').textContent = "Por favor, completa todos los campos.";
-                document.getElementById('error').style.display = "block";
-                return;
-            }
+    // Validaciones del cliente
+    if (!nombre || !invitados) {
+        document.getElementById('error').textContent = "Por favor, completa todos los campos.";
+        document.getElementById('error').style.display = "block";
+        return;
+    }
 
-            // Enviar datos
-            fetch('https://script.google.com/macros/s/AKfycbzQqU7_AaJ_MJ0PbthcIQGfQbTRZnxOOgxaHRru0NIxUj6Z32Sq-ogZ5Ao6-1kVFVcKaQ/exec', {
-                    method: 'POST',
-                    body: JSON.stringify({ nombre, invitados }),
-                    headers: { 'Content-Type': 'application/json' }
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.status === "OK") {
-                        document.getElementById('message').textContent = "¡Asistencia confirmada! Gracias.";
-                        document.getElementById('message').style.display = "block";
-                        document.getElementById('confirmar-form').reset();
-                    } else {
-                        throw new Error(data.message || "Error desconocido");
-                    }
-                })
-                .catch(error => {
-                    console.error("Error:", error);
-                    document.getElementById('error').textContent = "Hubo un problema. Inténtalo más tarde.";
-                    document.getElementById('error').style.display = "block";
-                });
-        });
+    // Envío de datos con fetch
+    fetch('https://script.google.com/macros/s/AKfycbzQqU7_AaJ_MJ0PbthcIQGfQbTRZnxOOgxaHRru0NIxUj6Z32Sq-ogZ5Ao6-1kVFVcKaQ/exec', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ nombre, invitados }) // Datos a enviar
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status === "OK") {
+            document.getElementById('message').textContent = "¡Asistencia confirmada! Gracias.";
+            document.getElementById('message').style.display = "block";
+            document.getElementById('confirmar-form').reset();
+        } else {
+            throw new Error(data.message || "Error desconocido");
+        }
+    })
+    .catch(error => {
+        console.error("Error:", error);
+        document.getElementById('error').textContent = "Hubo un problema. Inténtalo más tarde.";
+        document.getElementById('error').style.display = "block";
+    });
+});
+
     </script>
 </body>
 
