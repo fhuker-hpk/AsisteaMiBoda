@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Confirmación de Asistencia | Boda Juan David & Tatiana</title>
+
+    <!-- Ejemplo de importación de tipografías de Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet" />
+
+    <style>
+        /* Reseteo general */
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html,
+        body {
+            height: 100%;
+            font-family: 'Open Sans', sans-serif;
+            color: #333;
+        }
+        /* Fondo con imagen y superposición */
+        
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: url('fondo.jpg') no-repeat center center fixed;
+            background-size: cover;
+            position: relative;
+            animation: fadeIn 1.2s ease-out both;
+            /* Animación al cargar la página */
+        }
+        /* Capa oscura/transparente para mejorar legibilidad */
+        
+        body::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: -1;
+        }
+        
+        header {
+            text-align: center;
+            color: #fff;
+            margin: 30px 20px 20px;
+            animation: fadeUp 1.2s ease-out both;
+        }
+        
+        header h1 {
+            font-size: 2.5em;
+            font-family: 'Dancing Script', cursive;
+            margin-bottom: 10px;
+        }
+        
+        header p {
+            font-size: 1.1em;
+            font-weight: 600;
+        }
+        /* Sección principal (tarjeta de confirmación) */
+        
+        main {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            width: 90%;
+            max-width: 450px;
+            margin: 0 20px 20px;
+            animation: fadeUp 1.2s ease-out 0.4s both;
+            position: relative;
+        }
+        /* Datos de la boda */
+        
+        .datos-boda {
+            margin-bottom: 20px;
+            color: #555;
+            line-height: 1.5;
+        }
+        
+        .datos-boda h2 {
+            font-size: 1.5em;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #c45c5c;
+            /* Puedes cambiar este color */
+            text-align: center;
+        }
+        
+        .datos-boda ul {
+            list-style: none;
+            font-size: 1em;
+            padding: 0;
+        }
+        
+        .datos-boda li {
+            margin: 8px 0;
+            text-align: center;
+        }
+        
+        .datos-boda .novios {
+            font-size: 1.3em;
+            font-weight: 700;
+            color: #333;
+            font-family: 'Dancing Script', cursive;
+            text-align: center;
+        }
+        
+        form {
+            display: flex;
+            flex-direction: column;
+            margin-top: 10px;
+        }
+        
+        label {
+            margin: 10px 0 5px;
+            font-weight: 600;
+            font-size: 0.95em;
+            color: #333;
+        }
+        
+        input {
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            font-size: 1em;
+            border: 1px solid #ccc;
+            transition: border-color 0.3s ease;
+        }
+        
+        input:focus {
+            outline: none;
+            border-color: #c45c5c;
+        }
+        
+        button {
+            padding: 12px;
+            background: #c45c5c;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: 600;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+        
+        button:hover {
+            background: #a84242;
+            transform: translateY(-2px);
+        }
+        
+        footer {
+            text-align: center;
+            color: #fff;
+            font-size: 0.9em;
+            margin-bottom: 20px;
+            padding: 0 20px;
+            animation: fadeUp 1.2s ease-out 0.6s both;
+        }
+        
+        footer p {
+            margin-bottom: 5px;
+        }
+        /* Animaciones con @keyframes */
+        
+        @keyframes fadeUp {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+        /* Responsividad para pantallas pequeñas */
+        
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 2em;
+            }
+            header p {
+                font-size: 1em;
+            }
+            .datos-boda h2 {
+                font-size: 1.3em;
+            }
+            .datos-boda .novios {
+                font-size: 1.2em;
+            }
+            main {
+                padding: 15px;
+            }
+            button {
+                font-size: 0.95em;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>¡Nos Casamos!</h1>
+        <p>Juan David & Tatiana</p>
+    </header>
+
+    <main>
+        <!-- Datos básicos de la boda -->
+        <div class="datos-boda">
+            <h2>Detalles de la Ceremonia</h2>
+            <ul>
+                <li class="novios">Juan David & Tatiana</li>
+                <li><strong>Fecha:</strong> 01 de marzo de 2025</li>
+                <li><strong>Hora de la Ceremonia:</strong> 6:00 PM</li>
+                <li><strong>Lugar:</strong> Basílica Nuestra Señora de las Misericordias</li>
+            </ul>
+            <h2>Recepción</h2>
+            <ul>
+                <li><strong>Hora de la Recepción:</strong> 7:00 PM</li>
+                <li><strong>Lugar:</strong> Mesón del Oso</li>
+            </ul>
+        </div>
+
+        <form id="confirmar-form">
+            <label for="nombre">Nombre o Familia:</label>
+            <input type="text" id="nombre" name="nombre" placeholder="Ej. Familia García" required />
+
+            <label for="invitados">Número de Invitados:</label>
+            <input type="number" id="invitados" name="invitados" min="1" placeholder="Ej. 2" required />
+
+            <button type="submit">Confirmar Asistencia</button>
+        </form>
+    </main>
+
+    <footer>
+        <p>¡Gracias por ser parte de este momento tan especial!</p>
+        <p>Esperamos verte en nuestro gran día. ❤️</p>
+    </footer>
+
+    <script>
+        document.getElementById('confirmar-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const nombre = document.getElementById('nombre').value;
+            const invitados = document.getElementById('invitados').value;
+
+            // Enviar datos al script de Google Apps Script
+            fetch('https://script.google.com/macros/s/AKfycbwgY8iGMYRLaN0Xg0FiCDy36aEOma_Fc1IHdOmk3uGTBxMaxM6xQ129vP7pTx5eC3mGbg/exec', {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        nombre,
+                        invitados
+                    }),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                .then(response => {
+                    if (response.ok) {
+                        alert('¡Asistencia confirmada! Gracias por acompañarnos.');
+                        document.getElementById('confirmar-form').reset();
+                    } else {
+                        alert('Hubo un problema al enviar los datos. Inténtalo nuevamente.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Ocurrió un error al enviar la confirmación. Por favor, inténtalo más tarde.');
+                });
+        });
+    </script>
+</body>
+
+</html>
