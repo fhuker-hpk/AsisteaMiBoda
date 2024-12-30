@@ -235,25 +235,28 @@
         <div id="error" class="error-message" style="display: none;"></div>
     </main>
 
-    <script>
-       document.getElementById('confirmar-form').addEventListener('submit', function(event) {
+    <script>document.getElementById('confirmar-form').addEventListener('submit', function(event) {
     event.preventDefault();
 
     const nombre = document.getElementById('nombre').value.trim();
     const invitados = document.getElementById('invitados').value.trim();
 
-    // Validaciones del cliente
+    // Validaciones
     if (!nombre || !invitados) {
         document.getElementById('error').textContent = "Por favor, completa todos los campos.";
         document.getElementById('error').style.display = "block";
         return;
     }
 
-    // Envío de datos con fetch
+    // Crear un objeto FormData
+    const formData = new FormData();
+    formData.append('nombre', nombre);
+    formData.append('invitados', invitados);
+
+    // Enviar los datos
     fetch('https://script.google.com/macros/s/AKfycbzQqU7_AaJ_MJ0PbthcIQGfQbTRZnxOOgxaHRru0NIxUj6Z32Sq-ogZ5Ao6-1kVFVcKaQ/exec', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ nombre, invitados }) // Datos a enviar
+        body: formData
     })
     .then(response => response.json())
     .then(data => {
@@ -271,7 +274,6 @@
         document.getElementById('error').style.display = "block";
     });
 });
-
     </script>
 </body>
 
