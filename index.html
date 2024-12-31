@@ -8,18 +8,12 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Open+Sans:wght@400;700&display=swap"
-    rel="stylesheet"
-  />
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet" />
   <!-- Íconos de Font Awesome -->
-  <link
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-    rel="stylesheet"
-  />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" />
 
   <style>
-    /* General Styling */
+    /* Estilos generales */
     * {
       margin: 0;
       padding: 0;
@@ -49,10 +43,12 @@
       color: #fff;
       margin: 20px 0;
     }
+
     header h1 {
       font-size: 2.8rem;
       font-family: 'Dancing Script', cursive;
     }
+
     header p {
       font-size: 1.3rem;
       font-weight: 600;
@@ -74,23 +70,28 @@
       margin-bottom: 30px;
       color: #333;
     }
+
     .datos-boda h2 {
       font-size: 1.6rem;
       color: #3a6b3f;
       margin-bottom: 10px;
     }
+
     .datos-boda ul {
       list-style: none;
       padding: 0;
     }
+
     .datos-boda li {
       margin: 8px 0;
     }
+
     .datos-boda .novios {
       font-size: 1.4rem;
       font-family: 'Dancing Script', cursive;
       color: #79c280;
     }
+
     .fecha-limite {
       margin-top: 15px;
       font-size: 1.2rem;
@@ -156,15 +157,19 @@
       header h1 {
         font-size: 2.2rem;
       }
+
       header p {
         font-size: 1rem;
       }
+
       main {
         padding: 20px;
       }
+
       .datos-boda h2 {
         font-size: 1.4rem;
       }
+
       .contador span {
         font-size: 1.5rem;
       }
@@ -204,35 +209,35 @@
         <li><i class="fa fa-clock"></i> <strong>Hora de la Ceremonia:</strong> 6:00 PM</li>
         <li><i class="fa fa-map-marker-alt"></i> <strong>Lugar:</strong> Basílica Nuestra Señora de las Misericordias</li>
       </ul>
+
       <h2>Recepción</h2>
       <ul>
         <li><i class="fa fa-clock"></i> <strong>Hora:</strong> 7:00 PM</li>
         <li><i class="fa fa-map-marker-alt"></i> <strong>Lugar:</strong> Mesón del Oso</li>
       </ul>
+
       <p class="fecha-limite">¡Confirma tu asistencia antes del 20 de febrero!</p>
     </div>
 
     <!-- Formulario de Google -->
-    <iframe 
-      src="https://docs.google.com/forms/d/e/1FAIpQLSe3z2Cm0P51K0DB0bokMhXpjhCFzqqGBRIEtL2eYoL65ge-sg/viewform?embedded=true" 
-      onload="setupFormRedirection()">
-    </iframe>
+    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSe3z2Cm0P51K0DB0bokMhXpjhCFzqqGBRIEtL2eYoL65ge-sg/viewform?embedded=true" onload="setupFormRedirection()"></iframe>
 
     <script>
-  function setupFormRedirection() {
-    const iframe = document.querySelector("iframe");
-    iframe.onload = () => {
-      const url = iframe.contentWindow.location.href;
-      // Checamos si la URL del iframe incluye "formResponse"
-      if (url.includes("formResponse")) {
-        // Esperamos 2 segundos (opcional) y redirigimos
-        setTimeout(() => {
-          window.location.href = "confirmacion.html";
-        }, 2000);
+      function setupFormRedirection() {
+        const iframe = document.querySelector("iframe");
+        iframe.onload = () => {
+          const url = iframe.contentWindow.location.href;
+
+          // Checamos si la URL del iframe incluye "formResponse"
+          if (url.includes("formResponse")) {
+            // Esperamos 2 segundos (opcional) y redirigimos
+            setTimeout(() => {
+              window.location.href = "confirmacion.html";
+            }, 2000);
+          }
+        };
       }
-    };
-  }
-</script>
+    </script>
   </main>
 
   <script>
@@ -260,6 +265,7 @@
       const iframe = document.querySelector("iframe");
       iframe.onload = () => {
         const url = iframe.contentWindow.location.href;
+
         if (url.includes("formResponse")) {
           setTimeout(() => {
             window.location.href = "confirmacion.html";
