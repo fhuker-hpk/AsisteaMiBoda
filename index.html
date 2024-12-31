@@ -2,10 +2,6 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <!-- 
-    Asegúrate de incluir esta meta para que el navegador interprete
-    el ancho del dispositivo al renderizar la página en móviles 
-  -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Confirmación de Asistencia | Boda Juan David & Tatiana</title>
 
@@ -16,12 +12,9 @@
     href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Open+Sans:wght@400;700&display=swap" 
     rel="stylesheet" 
   />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" />
 
   <style>
-    /* 
-      RESET BÁSICO 
-      Ajustamos márgenes y relleno y establecemos box-sizing para facilitar cálculos de ancho/alto 
-    */
     * {
       margin: 0;
       padding: 0;
@@ -34,23 +27,12 @@
       color: #333;
     }
 
-    /* 
-      Ajuste de tipografía base (utiliza unidades relativas como rem en lugar de px si quieres mayor flexibilidad)
-      Por ejemplo: font-size: 16px en body y luego usar rem 
-    */
     body {
-      font-size: 16px; 
+      font-size: 16px;
       line-height: 1.5;
-      background: 
-        url("fondo.jpg") 
-        center/cover no-repeat, 
-        #EAF7EA; 
+      background: url("fondo.jpg") center/cover no-repeat, #EAF7EA;
       position: relative;
       animation: fadeIn 2.5s ease-out both;
-      /* 
-        Para mejorar la lectura en fondos con imágenes o colores, 
-        se puede aumentar un poco el contraste del overlay 
-      */
     }
     body::before {
       content: '';
@@ -58,33 +40,33 @@
       inset: 0;
       background: rgba(255, 255, 255, 0.6);
       z-index: -1;
+      background: linear-gradient(90deg, #79c280, #3a6b3f);
+      background-size: 400% 400%;
+      animation: gradientMove 10s infinite;
     }
 
-    /* 
-      Encabezado 
-      Usamos margen y padding en lugar de margin-bottom solamente, 
-      para que se adapte mejor en pantallas pequeñas 
-    */
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
     header {
       text-align: center;
-      color: #3a6b3f; /* Verde oscuro para los títulos */
+      color: #3a6b3f;
       margin: 20px 0;
       animation: fadeUp 2.5s ease-out both;
     }
     header h1 {
-      font-size: 2.5rem; /* Ajuste de tamaño usando rem */
+      font-size: 2.5rem;
       font-family: 'Dancing Script', cursive;
       margin-bottom: 5px;
     }
     header p {
-      font-size: 1.25rem; 
+      font-size: 1.25rem;
       font-weight: 600;
     }
 
-    /* 
-      Contenedor principal 
-      Ajustamos ancho máximo y márgenes automáticos para que luzca mejor en diferentes dispositivos 
-    */
     main {
       background: rgba(255, 255, 255, 0.95);
       border-radius: 10px;
@@ -96,10 +78,6 @@
       animation: fadeUp 2.5s ease-out 0.4s both;
     }
 
-    /* 
-      Sección de datos
-      Ajustamos tamaño de tipografía para pantallas más pequeñas 
-    */
     .datos-boda {
       margin-bottom: 25px;
       color: #555;
@@ -135,14 +113,10 @@
       font-weight: bold;
     }
 
-    /* 
-      Formulario 
-      Añadimos display flex, flex-direction, etc. para organizar columnas 
-    */
     form {
       display: flex;
       flex-direction: column;
-      gap: 15px; /* Espacio entre los elementos del formulario */
+      gap: 15px;
     }
     label {
       font-weight: bold;
@@ -161,10 +135,6 @@
       outline: none;
     }
 
-    /* 
-      Botón en tono pastel verde 
-      Añadimos un sutil efecto hover y focus 
-    */
     button {
       padding: 12px;
       background: #79c280; 
@@ -175,19 +145,12 @@
       font-size: 1.2rem;
       transition: background 0.3s ease, transform 0.3s ease;
     }
-    button:hover,
-    button:focus {
+    button:hover, button:focus {
       background: #68af6f;
       transform: translateY(-2px);
       outline: none;
     }
 
-    .success-message {
-      text-align: center;
-      color: #4CAF50;
-      font-weight: bold;
-      margin-top: 10px;
-    }
     .error-message {
       text-align: center;
       color: #E74C3C;
@@ -195,9 +158,13 @@
       margin-top: 10px;
     }
 
-    /* 
-      Animaciones 
-    */
+    #contador {
+      text-align: center;
+      margin: 20px 0;
+      font-size: 1.2rem;
+      color: #3a6b3f;
+    }
+
     @keyframes fadeUp {
       0% {
         opacity: 0;
@@ -208,19 +175,7 @@
         transform: translateY(0);
       }
     }
-    @keyframes fadeIn {
-      0% {
-        opacity: 0;
-      }
-      100% {
-        opacity: 1;
-      }
-    }
 
-    /* 
-      Media Queries 
-      Ajustamos algunos tamaños de fuente e interlineado para pantallas muy pequeñas 
-    */
     @media (max-width: 480px) {
       header h1 {
         font-size: 2rem;
@@ -255,14 +210,14 @@
       <h2>Detalles de la Ceremonia</h2>
       <ul>
         <li class="novios">Juan David & Tatiana</li>
-        <li><strong>Fecha:</strong> 01 de marzo de 2025</li>
-        <li><strong>Hora de la Ceremonia:</strong> 6:00 PM</li>
-        <li><strong>Lugar:</strong> Basílica Nuestra Señora de las Misericordias</li>
+        <li><i class="fa fa-calendar"></i> <strong>Fecha:</strong> 01 de marzo de 2025</li>
+        <li><i class="fa fa-clock"></i> <strong>Hora de la Ceremonia:</strong> 6:00 PM</li>
+        <li><i class="fa fa-map-marker-alt"></i> <strong>Lugar:</strong> Basílica Nuestra Señora de las Misericordias</li>
       </ul>
       <h2>Recepción</h2>
       <ul>
-        <li><strong>Hora:</strong> 7:00 PM</li>
-        <li><strong>Lugar:</strong> Mesón del Oso</li>
+        <li><i class="fa fa-clock"></i> <strong>Hora:</strong> 7:00 PM</li>
+        <li><i class="fa fa-map-marker-alt"></i> <strong>Lugar:</strong> Mesón del Oso</li>
       </ul>
       <p class="fecha-limite">
         ¡Confirma tu asistencia antes del 20 de febrero!
@@ -292,31 +247,67 @@
       <button type="submit">Confirmar Asistencia</button>
       <div id="error" class="error-message" style="display: none;"></div>
     </form>
+
+    <div id="contador">
+      <h3>Faltan:</h3>
+      <p id="tiempo-restante">Cargando...</p>
+    </div>
   </main>
 
   <script>
+    // Validación en tiempo real
+    const nombreInput = document.getElementById('nombre');
+    const invitadosInput = document.getElementById('invitados');
+
+    nombreInput.addEventListener('input', () => {
+      nombreInput.style.borderColor = nombreInput.value.trim() ? '#79c280' : 'red';
+    });
+
+    invitadosInput.addEventListener('input', () => {
+      invitadosInput.style.borderColor = invitadosInput.value > 0 ? '#79c280' : 'red';
+    });
+
+    // Procesar formulario
     document.getElementById('confirmar-form').addEventListener('submit', function(event) {
       event.preventDefault();
 
-      const nombre = document.getElementById('nombre').value.trim();
-      const invitados = document.getElementById('invitados').value.trim();
+      const nombre = nombreInput.value.trim();
+      const invitados = invitadosInput.value.trim();
 
-      // Validación simple
       if (!nombre || !invitados) {
-        const errorElement = document.getElementById('error');
-        errorElement.textContent = "Por favor, completa todos los campos.";
-        errorElement.style.display = "block";
+        document.getElementById('error').textContent = "Por favor, completa todos los campos.";
+        document.getElementById('error').style.display = "block";
         return;
       }
 
-      // Si todo está bien, ocultamos el mensaje de error
       document.getElementById('error').style.display = "none";
+      localStorage.setItem('nombreUsuario', nombre);
 
-      // Simulación de envío exitoso y redirección
+      document.querySelector('main').innerHTML = `
+        <h1>Procesando tu confirmación...</h1>
+        <p>Por favor espera un momento.</p>
+      `;
+
       setTimeout(() => {
         window.location.href = "confirmacion.html";
-      }, 1000);
+      }, 2000);
     });
+
+    // Contador regresivo
+    const eventoFecha = new Date("March 1, 2025 18:00:00").getTime();
+
+    setInterval(() => {
+      const ahora = new Date().getTime();
+      const diferencia = eventoFecha - ahora;
+
+      const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
+      const horas = Math.floor((diferencia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutos = Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60));
+      const segundos = Math.floor((diferencia % (1000 * 60)) / 1000);
+
+      document.getElementById('tiempo-restante').innerText = 
+        `${dias} días, ${horas} horas, ${minutos} minutos y ${segundos} segundos`;
+    }, 1000);
   </script>
 </body>
 </html>
