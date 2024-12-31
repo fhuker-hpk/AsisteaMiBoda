@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Confirmación Recibida</title>
+  <title>Confirmación Exitosa</title>
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -14,25 +14,22 @@
   />
 
   <style>
-    /* Estilo básico */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
 
-    html, body {
+    body {
       height: 100%;
       font-family: 'Open Sans', sans-serif;
-      color: #333;
+      background: url("fondo-confirmacion.jpg") center/cover no-repeat, #EAF7EA;
       display: flex;
       justify-content: center;
       align-items: center;
-      background: 
-        url("fondo-confirmacion.jpg") 
-        center/cover no-repeat, 
-        #EAF7EA; 
+      color: #333;
     }
+
     body::before {
       content: '';
       position: absolute;
@@ -43,13 +40,13 @@
 
     main {
       background: rgba(255, 255, 255, 0.95);
+      padding: 30px;
       border-radius: 10px;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-      padding: 30px;
+      text-align: center;
+      animation: fadeIn 1.5s ease-out both;
       width: 90%;
       max-width: 500px;
-      text-align: center;
-      animation: fadeIn 2s ease-out both;
     }
 
     h1 {
@@ -66,22 +63,14 @@
       line-height: 1.6;
     }
 
-    .contador {
-      text-align: center;
-      margin: 30px 0;
-      font-size: 1.5rem;
-      color: #3a6b3f;
-    }
-
-    .botones-ubicacion {
+    .opciones {
+      margin: 20px 0;
       display: flex;
       flex-direction: column;
       gap: 10px;
-      margin: 20px 0;
     }
 
-    .botones-ubicacion a {
-      display: inline-block;
+    .opciones a {
       padding: 10px 20px;
       background: #79c280;
       color: #fff;
@@ -92,23 +81,19 @@
       transition: background 0.3s ease, transform 0.3s ease;
     }
 
-    .botones-ubicacion a:hover {
+    .opciones a:hover {
       background: #68af6f;
       transform: translateY(-2px);
     }
 
-    .reloj {
-      font-size: 1.2rem;
-      margin-top: 20px;
-      color: #3a6b3f;
-    }
-
     @keyframes fadeIn {
-      0% {
+      from {
         opacity: 0;
+        transform: translateY(30px);
       }
-      100% {
+      to {
         opacity: 1;
+        transform: translateY(0);
       }
     }
 
@@ -119,7 +104,7 @@
       p {
         font-size: 1rem;
       }
-      a {
+      .opciones a {
         font-size: 1rem;
       }
     }
@@ -129,62 +114,32 @@
 <body>
   <main>
     <h1>¡Gracias por Confirmar!</h1>
-    <p>
-      Estamos muy emocionados de que nos acompañes en nuestro día especial.
-      Recuerda que la ceremonia será el <strong>01 de marzo de 2025</strong>
-      a las <strong>6:00 PM</strong> en la Basílica Nuestra Señora de las Misericordias.
+    <p id="mensaje-personalizado">
+      Estamos muy felices de saber que nos acompañarás en nuestro gran día.
     </p>
     <p>
-      La recepción tendrá lugar en el Mesón del Oso a partir de las <strong>7:00 PM</strong>.
+      Recuerda que la ceremonia será el <strong>01 de marzo de 2025</strong> a las 
+      <strong>6:00 PM</strong> en la Basílica Nuestra Señora de las Misericordias.
+      La recepción se realizará en el Mesón del Oso a las <strong>7:00 PM</strong>.
     </p>
-
-    <!-- Reloj dinámico -->
-    <div class="reloj" id="reloj"></div>
-
-    <!-- Contador regresivo -->
-    <section class="contador">
-      <h2>Faltan:</h2>
-      <p id="contador-tiempo">Cargando...</p>
-    </section>
-
-    <!-- Botones de ubicación -->
-    <div class="botones-ubicacion">
-      <a href="https://www.google.com/maps?q=Basílica+Nuestra+Señora+de+las+Misericordias,+Santa+Rosa+de+Osos" target="_blank">Ver Ubicación de la Ceremonia</a>
-      <a href="https://www.google.com/maps?q=Mesón+del+Oso,+Santa+Rosa+de+Osos" target="_blank">Ver Ubicación de la Recepción</a>
+    <div class="opciones">
+      <a href="https://www.google.com/maps?q=Basílica+Nuestra+Señora+de+las+Misericordias" target="_blank">
+        Ver Ubicación de la Ceremonia
+      </a>
+      <a href="https://www.google.com/maps?q=Mesón+del+Oso" target="_blank">
+        Ver Ubicación de la Recepción
+      </a>
+      <a href="index.html">Volver a la Página Principal</a>
     </div>
-
-    <a href="index.html">Volver a la Página Principal</a> 
   </main>
 
   <script>
-    // Reloj en tiempo real
-    setInterval(() => {
-      const ahora = new Date();
-      const hora = ahora.getHours().toString().padStart(2, '0');
-      const minutos = ahora.getMinutes().toString().padStart(2, '0');
-      const segundos = ahora.getSeconds().toString().padStart(2, '0');
-      document.getElementById('reloj').innerText = `Hora actual: ${hora}:${minutos}:${segundos}`;
-    }, 1000);
-
-    // Contador regresivo
-    const eventoFecha = new Date("March 1, 2025 18:00:00").getTime();
-    const contadorIntervalo = setInterval(() => {
-      const ahora = new Date().getTime();
-      const diferencia = eventoFecha - ahora;
-
-      const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
-      const horas = Math.floor((diferencia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutos = Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60));
-      const segundos = Math.floor((diferencia % (1000 * 60)) / 1000);
-
-      document.getElementById("contador-tiempo").innerText = 
-        `${dias} días, ${horas} horas, ${minutos} minutos y ${segundos} segundos`;
-
-      if (diferencia < 0) {
-        clearInterval(contadorIntervalo);
-        document.getElementById("contador-tiempo").innerText = "¡Es el gran día!";
-      }
-    }, 1000);
+    // Personaliza el mensaje si el nombre del usuario está disponible (por ejemplo, desde el almacenamiento local)
+    const nombreUsuario = localStorage.getItem('nombreUsuario'); // Guardado al confirmar
+    if (nombreUsuario) {
+      document.getElementById('mensaje-personalizado').innerText = 
+        `¡Gracias, ${nombreUsuario}, por confirmar tu asistencia! Estamos emocionados de verte.`;
+    }
   </script>
 </body>
 </html>
