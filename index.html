@@ -6,7 +6,6 @@
   <title>Confirmación de Asistencia | Boda Juan David & Tatiana</title>
 
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Dancing+Script:600" />
-  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
@@ -145,7 +144,18 @@
     }
 
     /*********************************************
-     * 6. IFRAME DE GOOGLE FORMS
+     * 6. CONTADOR DE TIEMPO
+    *********************************************/
+    .contador {
+      text-align: center;
+      font-size: 1.5rem;
+      color: #3a6b3f;
+      margin-top: 20px;
+      font-weight: bold;
+    }
+
+    /*********************************************
+     * 7. IFRAME DE GOOGLE FORMS
     *********************************************/
     .google-form-container {
       margin: 20px 0;
@@ -160,33 +170,33 @@
     }
 
     /*********************************************
-     * 7. BOTÓN DE CONFIRMACIÓN
+     * 8. BOTÓN DE CONFIRMACIÓN
     *********************************************/
-.contenedor {
-  text-align: center; /* Centra el contenido en el eje horizontal */
-}
+    .contenedor {
+      text-align: center; /* Centra el contenido en el eje horizontal */
+    }
 
-.btn-confirmacion {
-  display: inline-block; /* Asegura que el botón se comporta como un bloque en línea */
-  margin: 20px auto 0 auto; /* Centrado horizontal con espacio superior */
-  padding: 12px 20px; /* Añadir espacio dentro del botón */
-  background: #79c280; /* Color de fondo */
-  color: #fff; /* Color del texto */
-  border: none; /* Sin bordes */
-  border-radius: 5px; /* Bordes redondeados */
-  cursor: pointer; /* Cursor en forma de mano */
-  font-size: 1.2rem; /* Tamaño del texto */
-  transition: background 0.3s ease, transform 0.3s ease; /* Transiciones suaves para los efectos */
-  font-weight: bold; /* Negrita para el texto */
-}
+    .btn-confirmacion {
+      display: inline-block; /* Asegura que el botón se comporta como un bloque en línea */
+      margin: 20px auto 0 auto; /* Centrado horizontal con espacio superior */
+      padding: 12px 20px; /* Añadir espacio dentro del botón */
+      background: #79c280; /* Color de fondo */
+      color: #fff; /* Color del texto */
+      border: none; /* Sin bordes */
+      border-radius: 5px; /* Bordes redondeados */
+      cursor: pointer; /* Cursor en forma de mano */
+      font-size: 1.2rem; /* Tamaño del texto */
+      transition: background 0.3s ease, transform 0.3s ease; /* Transiciones suaves para los efectos */
+      font-weight: bold; /* Negrita para el texto */
+    }
 
-.btn-confirmacion:hover {
-  background: #68af6f; /* Cambio de color de fondo */
-  transform: translateY(-2px); /* Efecto de desplazamiento */
-}
+    .btn-confirmacion:hover {
+      background: #68af6f; /* Cambio de color de fondo */
+      transform: translateY(-2px); /* Efecto de desplazamiento */
+    }
 
     /*********************************************
-     * 8. RESPONSIVE (MÓVILES)
+     * 9. RESPONSIVE (MÓVILES)
     *********************************************/
     @media (max-width: 480px) {
       header h1 {
@@ -204,10 +214,13 @@
       .datos-boda .novios {
         font-size: 1.15rem;
       }
+      .contador {
+        font-size: 1.2rem;
+      }
     }
 
     /*********************************************
-     * 9. PIE DE PÁGINA (CRÉDITOS)
+     * 10. PIE DE PÁGINA (CRÉDITOS)
     *********************************************/
     footer {
       text-align: center;
@@ -251,43 +264,10 @@
       <p class="fecha-limite">
         ¡Confirma tu asistencia antes del 20 de febrero!
       </p>
+      <div class="contador" id="contador"></div>
     </div>
 
     <!-- Formulario de Google Forms (Embebido) -->
     <div class="google-form-container">
       <iframe
-        src="https://docs.google.com/forms/d/e/1FAIpQLSe3z2Cm0P51K0DB0bokMhXpjhCFzqqGBRIEtL2eYoL65ge-sg/viewform?embedded=true"
-        marginheight="0"
-        marginwidth="0"
-      >
-        Cargando…
-      </iframe>
-    </div>
-
-    <!-- Botón para ir a la página de confirmación -->
-    <button class="btn-confirmacion" onclick="window.location.href='confirmacion.html'">
-      Conoce la ubicación
-    </button>
-  </main>
-
-  <footer>
-    Desarrollado por <strong>AbsolutamenteNadie hpk</strong>
-  </footer>
-
-
-  <script>
-    const eventoFecha = new Date("March 1, 2025 18:00:00").getTime();
-    setInterval(() => {
-      const ahora = new Date().getTime();
-      const diferencia = eventoFecha - ahora;
-      const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
-      const horas = Math.floor((diferencia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutos = Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60));
-      const segundos = Math.floor((diferencia % (1000 * 60)) / 1000);
-      // Aquí puedes actualizar un elemento con id="tiempo-restante", por ejemplo:
-      // document.getElementById('tiempo-restante').innerText = `${dias}d ${horas}h ${minutos}m ${segundos}s`;
-    }, 1000);
-  </script>
-  -->
-</body>
-</html>
+        src="https://docs.google.com/forms/d/e/1FAIpQLSe3z2Cm0P51K0DB[_{{{CITATION{{{_1{](https://github.com/karames/curso-markdown-master/tree/9a65a17dd637e2be8fee24d6ea6c5558403d5487/markdown%2F100-codigo-fuente.md)[_{{{CITATION{{{_2{](https://github.com/TanmayChavan-2403/Portfolio/tree/f0fd15c7880b81391a848916650a2fe143bac575/src%2Froutes%2Fcontact.js)[_{{{CITATION{{{_3{](https://github.com/ThiagoQuevedoSantos/website-gissiane/tree/12b5c1d6f44c675d028468af234ece5a5973dc32/pages%2F_app.js)
