@@ -16,7 +16,7 @@
   <link 
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" 
     rel="stylesheet"
-/>
+  />
 
   <style>
     /*********************************************
@@ -42,19 +42,19 @@
       Usamos un pseudo-elemento para el degradado pastel,
       así mantenemos el "fondo transparente" del body.
     */
-  body::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    /* Cambiar el fondo a una imagen */
-    background: url('fondo.jpg') no-repeat center center fixed;
-    background-size: cover;
-        /* Capa transparente */
-    background-color: rgba(0, 0, 0, 0.5); /* Negro con 50% de opacidad */
-    mix-blend-mode: overlay; /* Mezcla los colores de la imagen y la capa */
+    body::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      /* Cambiar el fondo a una imagen */
+      background: url('fondo.jpg') no-repeat center center fixed;
+      background-size: cover;
+      /* Capa transparente */
+      background-color: rgba(0, 0, 0, 0.5); /* Negro con 50% de opacidad */
+      mix-blend-mode: overlay; /* Mezcla los colores de la imagen y la capa */
+    }
 
-  }
     /*********************************************
      * 3. ANIMACIONES
     *********************************************/
@@ -289,34 +289,41 @@
       <button type="submit">Confirmar Asistencia</button>
       <div id="error" class="error-message"></div>
     </form>
-<script>document.addEventListener("DOMContentLoaded", () => {
-  const form = document.getElementById("confirmar-form");
-  if (form) {
-    form.addEventListener("submit", async (event) => {
-      event.preventDefault(); // Evita que la página se recargue
+  </main>
 
-      const formData = new FormData(event.target);
-      const data = Object.fromEntries(formData.entries()); // Convierte los datos en JSON
+  <!-- SCRIPT 1: Lógica para enviar datos a Google Apps Script -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const form = document.getElementById("confirmar-form");
+      if (form) {
+        form.addEventListener("submit", async (event) => {
+          event.preventDefault(); // Evita que la página se recargue
 
-      try {
-        const response = await fetch("https://script.google.com/macros/s/AKfycbza80TCd2Zepjc9PVr_gvWFVM5jBMjqfknuWh4u0A8cchcXRMMAx7IOgX2iLKnc7Ys8eQ/exec", {
-          method: "POST",
-          body: JSON.stringify(data), // Envía datos en formato JSON
-          headers: { "Content-Type": "application/json" }, // Encabezado correcto
+          const formData = new FormData(event.target);
+          const data = Object.fromEntries(formData.entries()); // Convierte los datos en JSON
+
+          try {
+            const response = await fetch("https://script.google.com/macros/s/AKfycbza80TCd2Zepjc9PVr_gvWFVM5jBMjqfknuWh4u0A8cchcXRMMAx7IOgX2iLKnc7Ys8eQ/exec", {
+              method: "POST",
+              body: JSON.stringify(data), // Envía datos en formato JSON
+              headers: { "Content-Type": "application/json" }, // Encabezado correcto
+            });
+            if (response.ok) {
+              alert("Formulario enviado con éxito");
+            } else {
+              alert("Hubo un problema al enviar el formulario");
+            }
+          } catch (error) {
+            alert("Error: " + error.message);
+          }
         });
-        if (response.ok) {
-          alert("Formulario enviado con éxito");
-        } else {
-          alert("Hubo un problema al enviar el formulario");
-        }
-      } catch (error) {
-        alert("Error: " + error.message);
+      } else {
+        console.error("Formulario con id 'confirmar-form' no encontrado.");
       }
     });
-  } else {
-    console.error("Formulario con id 'confirmar-form' no encontrado.");
-  }
-});
+  </script>
+
+  <!-- SCRIPT 2: Validación, redirección y contador regresivo -->
   <script>
     // --- 1. VALIDACIÓN EN TIEMPO REAL ---
     const nombreInput = document.getElementById('nombre');
@@ -367,6 +374,7 @@
     const eventoFecha = new Date("March 1, 2025 18:00:00").getTime();
     const tiempoRestante = document.getElementById('tiempo-restante');
 
+    // Si tu HTML tiene un elemento con id="tiempo-restante", lo usas aquí:
     setInterval(() => {
       const ahora = new Date().getTime();
       const diferencia = eventoFecha - ahora;
@@ -376,8 +384,11 @@
       const minutos = Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60));
       const segundos = Math.floor((diferencia % (1000 * 60)) / 1000);
 
-      tiempoRestante.innerText = `${dias} días, ${horas} horas, ${minutos} minutos y ${segundos} segundos`;
+      if (tiempoRestante) {
+        tiempoRestante.innerText = `${dias} días, ${horas} horas, ${minutos} minutos y ${segundos} segundos`;
+      }
     }, 1000);
   </script>
+
 </body>
 </html>
