@@ -235,7 +235,8 @@
         <div id="error" class="error-message" style="display: none;"></div>
     </main>
 
-    <script>document.getElementById('confirmar-form').addEventListener('submit', function(event) {
+    <script>
+        document.getElementById('confirmar-form').addEventListener('submit', function(event) {
     event.preventDefault();
 
     const nombre = document.getElementById('nombre').value.trim();
@@ -248,16 +249,16 @@
         return;
     }
 
-    // Crear un objeto FormData
-    const formData = new FormData();
-    formData.append('nombre', nombre);
-    formData.append('invitados', invitados);
-
-    // Enviar los datos
+    // Enviar los datos como JSON
     fetch('https://script.google.com/macros/s/AKfycbydrbXWgAJG1sMM-LQfHavcMVTo-7RggWo-MmuoJnnBlgOQ0j7SWB35I94pFXMKWKO5_g/exec', {
+        method: 'POST', // <--- Importante
+        headers: {
+            'Content-Type': 'application/json' // <--- Importante
+        },
         body: JSON.stringify({ 
-    nombre: nombre, 
-    invitados: invitados 
+            nombre: nombre, 
+            invitados: invitados
+        })
     })
     .then(response => response.json())
     .then(data => {
