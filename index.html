@@ -289,6 +289,37 @@
       <button type="submit">Confirmar Asistencia</button>
       <div id="error" class="error-message"></div>
     </form>
+   <script>
+        document.getElementById('attendanceForm').addEventListener('submit', async (event) => {
+            event.preventDefault();
+
+            const formData = new FormData(event.target);
+            const data = {
+                name: formData.get('name'),
+                attendees: formData.get('attendees'),
+            };
+
+            try {
+                const response = await fetch('https://script.google.com/macros/s/AKfycbzWPqrKhDok_53icZmw4V9e8jg_hbLAdOBQUxkjHmMOx7Rswl41eNFc86gBKqS35CS0PQ/exec', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data),
+                });
+
+                if (response.ok) {
+                    alert('¡Asistencia registrada con éxito!');
+                    event.target.reset();
+                } else {
+                    alert('Error al registrar la asistencia.');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Error al enviar los datos.');
+            }
+        });
+    </script>
   </main>
   
   <!-- SCRIPT 2: Validación, redirección y contador regresivo -->
