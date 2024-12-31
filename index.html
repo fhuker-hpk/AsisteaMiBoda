@@ -222,21 +222,7 @@
     <!-- Formulario de Google -->
     <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSe3z2Cm0P51K0DB0bokMhXpjhCFzqqGBRIEtL2eYoL65ge-sg/viewform?embedded=true" onload="setupFormRedirection()"></iframe>
 
-    <script>
-      function setupFormRedirection() {
-        const iframe = document.querySelector("iframe");
-        iframe.onload = () => {
-          const url = iframe.contentWindow.location.href;
-
-          // Checamos si la URL del iframe incluye "formResponse"
-          if (url.includes("formResponse")) {
-            // Esperamos 2 segundos (opcional) y redirigimos
-            setTimeout(() => {
-              window.location.href = "confirmacion.html";
-            }, 2000);
-          }
-        };
-      }
+    <script>function setupFormRedirection() { const iframe = document.querySelector("iframe"); iframe.onload = () => { const url = iframe.contentWindow.location.href; if (url.includes("formResponse")) { setTimeout(() => { iframe.contentWindow.postMessage("redirect", "https://tudominio.com"); }, 2000); } }; }
     </script>
   </main>
 
