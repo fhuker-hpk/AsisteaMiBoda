@@ -19,7 +19,7 @@
   />
 
   <style>
-    /* Estilo general y responsivo */
+    /* General Styling */
     * {
       margin: 0;
       padding: 0;
@@ -29,8 +29,8 @@
     html, body {
       height: 100%;
       font-family: 'Open Sans', sans-serif;
-      color: #333;
       background: transparent;
+      overflow-x: hidden;
     }
 
     body::before {
@@ -40,102 +40,121 @@
       z-index: -1;
       background: url('fondo.jpg') no-repeat center center fixed;
       background-size: cover;
-      background-color: rgba(0, 0, 0, 0.5);
+      background-color: rgba(0, 0, 0, 0.6);
       mix-blend-mode: overlay;
     }
 
     header {
       text-align: center;
-      color: #3a6b3f;
+      color: #fff;
       margin: 20px 0;
     }
     header h1 {
-      font-size: 2.5rem;
+      font-size: 2.8rem;
       font-family: 'Dancing Script', cursive;
-      margin-bottom: 5px;
     }
     header p {
-      font-size: 1.25rem;
+      font-size: 1.3rem;
       font-weight: 600;
     }
 
     main {
       background: rgba(255, 255, 255, 0.9);
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      border-radius: 12px;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
       padding: 30px;
       width: 90%;
       max-width: 700px;
       margin: 20px auto;
       text-align: center;
+      animation: fadeIn 1.2s ease-out;
     }
 
     .datos-boda {
-      margin-bottom: 25px;
-      color: #555;
-      line-height: 1.6;
+      margin-bottom: 30px;
+      color: #333;
     }
     .datos-boda h2 {
-      font-size: 1.5rem;
-      font-weight: bold;
+      font-size: 1.6rem;
       color: #3a6b3f;
       margin-bottom: 10px;
     }
     .datos-boda ul {
       list-style: none;
+      padding: 0;
     }
     .datos-boda li {
-      margin: 10px 0;
+      margin: 8px 0;
     }
     .datos-boda .novios {
-      font-size: 1.3rem;
-      font-weight: bold;
+      font-size: 1.4rem;
       font-family: 'Dancing Script', cursive;
-      color: #3a6b3f;
+      color: #79c280;
     }
     .fecha-limite {
       margin-top: 15px;
-      font-size: 1.1rem;
-      text-align: center;
+      font-size: 1.2rem;
       color: #3a6b3f;
       font-weight: bold;
     }
 
     .contador {
-      margin: 20px 0;
-      padding: 15px;
       background: rgba(122, 193, 149, 0.9);
       color: white;
-      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 10px;
       font-size: 1.5rem;
-      font-weight: bold;
       animation: pulse 2s infinite;
+      display: flex;
+      justify-content: space-around;
+      gap: 10px;
+    }
+
+    .contador div {
+      text-align: center;
+    }
+
+    .contador span {
+      display: block;
+      font-size: 2rem;
+      font-weight: bold;
     }
 
     iframe {
-      border: none;
       width: 100%;
       height: 800px;
+      border: none;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     }
 
     @keyframes pulse {
       0% {
         transform: scale(1);
-        box-shadow: 0 0 10px rgba(122, 193, 149, 0.5);
       }
       50% {
         transform: scale(1.05);
-        box-shadow: 0 0 20px rgba(122, 193, 149, 0.7);
       }
       100% {
         transform: scale(1);
-        box-shadow: 0 0 10px rgba(122, 193, 149, 0.5);
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
       }
     }
 
     @media (max-width: 480px) {
       header h1 {
-        font-size: 2rem;
+        font-size: 2.2rem;
       }
       header p {
         font-size: 1rem;
@@ -144,10 +163,10 @@
         padding: 20px;
       }
       .datos-boda h2 {
-        font-size: 1.3rem;
+        font-size: 1.4rem;
       }
-      .datos-boda .novios {
-        font-size: 1.15rem;
+      .contador span {
+        font-size: 1.5rem;
       }
     }
   </style>
@@ -162,10 +181,25 @@
   <main>
     <!-- Contador regresivo -->
     <div class="contador" id="contador">
-      Faltan: <span id="dias"></span> días, <span id="horas"></span> horas, <span id="minutos"></span> minutos y <span id="segundos"></span> segundos.
+      <div>
+        <span id="dias"></span>
+        Días
+      </div>
+      <div>
+        <span id="horas"></span>
+        Horas
+      </div>
+      <div>
+        <span id="minutos"></span>
+        Minutos
+      </div>
+      <div>
+        <span id="segundos"></span>
+        Segundos
+      </div>
     </div>
 
-    <!-- Sección con los detalles de la boda -->
+    <!-- Detalles de la boda -->
     <div class="datos-boda">
       <h2>Detalles de la Ceremonia</h2>
       <ul>
@@ -182,18 +216,19 @@
       <p class="fecha-limite">¡Confirma tu asistencia antes del 20 de febrero!</p>
     </div>
 
-    <!-- Formulario integrado de Google -->
+    <!-- Formulario de Google -->
     <iframe 
-      src="https://docs.google.com/forms/d/e/1FAIpQLSe3z2Cm0P51K0DB0bokMhXpjhCFzqqGBRIEtL2eYoL65ge-sg/viewform?embedded=true"
-      onload="setupRedirection()">
+      src="https://docs.google.com/forms/d/e/1FAIpQLSe3z2Cm0P51K0DB0bokMhXpjhCFzqqGBRIEtL2eYoL65ge-sg/viewform?embedded=true" 
+      onload="setupFormRedirection()">
     </iframe>
   </main>
 
   <script>
-    // Contador regresivo
+    // Configuración del contador regresivo
     const eventoFecha = new Date("March 1, 2025 18:00:00").getTime();
+    const contador = document.getElementById("contador");
 
-    setInterval(() => {
+    function actualizarContador() {
       const ahora = new Date().getTime();
       const diferencia = eventoFecha - ahora;
 
@@ -206,10 +241,12 @@
       document.getElementById("horas").textContent = horas;
       document.getElementById("minutos").textContent = minutos;
       document.getElementById("segundos").textContent = segundos;
-    }, 1000);
+    }
 
-    // Redirección al enviar el formulario
-    function setupRedirection() {
+    setInterval(actualizarContador, 1000);
+
+    // Configuración para redirigir tras enviar el formulario
+    function setupFormRedirection() {
       const iframe = document.querySelector("iframe");
       iframe.onload = () => {
         const url = iframe.contentWindow.location.href;
