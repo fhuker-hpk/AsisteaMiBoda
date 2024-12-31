@@ -279,10 +279,13 @@
   <!-- SCRIPT para manejo de envío y contador regresivo -->
   <script>
     // Referencias a elementos del DOM
-    const confirmarForm = document.getElementById('confirmar-form');
-    const nombreInput   = document.getElementById('nombre');
-    const invitadosInput= document.getElementById('invitados');
-    const errorElement  = document.getElementById('error');
+    const mainElement = document.querySelector('main');
+    const mainOriginalContent = mainElement.innerHTML;  // Guardamos el contenido original del <main>
+
+    const confirmarForm  = document.getElementById('confirmar-form');
+    const nombreInput    = document.getElementById('nombre');
+    const invitadosInput = document.getElementById('invitados');
+    const errorElement   = document.getElementById('error');
 
     // Evento Submit
     confirmarForm.addEventListener('submit', async (event) => {
@@ -301,22 +304,19 @@
       errorElement.style.display = "none";
 
       // 2. Mostrar mensaje de "Procesando..."
-      document.querySelector('main').innerHTML = `
+      mainElement.innerHTML = `
         <h1 style="color: #3a6b3f; font-family: 'Dancing Script', cursive;">
           Procesando tu confirmación...
         </h1>
         <p style="text-align: center; color: #555;">Por favor espera un momento.</p>
       `;
 
-      // 3. Enviar datos a tu endpoint de Netlify (Google Sheets)
-      const data = {
-        nombre: nombre,
-        invitados: invitados
-      };
+      // 3. Enviar datos a tu endpoint (Netlify/Google Sheets)
+      const data = { nombre, invitados };
 
       try {
         const response = await fetch(
-          'https://snazzy-babka-c0af11.netlify.app/', 
+          'https://snazzy-babka-c0af11.netlify.app/',
           {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -324,32 +324,36 @@
           }
         );
 
+        // 4. Validar respuesta
         if (response.ok) {
           // Redirigir tras 2s (o muestra un mensaje de éxito)
           setTimeout(() => {
             window.location.href = "confirmacion.html";
           }, 2000);
         } else {
-          alert('Error al registrar la asistencia.');
-          // (Opcional) Restablecer el contenido original del <main> o recargar la página
+          // Si la respuesta no es OK, restauramos el formulario:
+          mainElement.innerHTML = mainOriginalContent;
+          // (Opcional) podríamos volver a hacer un alert:
+          alert('Error al registrar la asistencia. Inténtalo de nuevo.');
         }
       } catch (error) {
         console.error('Error:', error);
-        alert('Error al enviar los datos.');
+        // Restaurar el contenido original del <main>:
+        mainElement.innerHTML = mainOriginalContent;
+        alert('Error al enviar los datos. Inténtalo de nuevo.');
       }
     });
 
     // --- CONTADOR REGRESIVO ---
     const eventoFecha = new Date("March 1, 2025 18:00:00").getTime();
-    // Si quieres mostrar el contador, crea un elemento con id="tiempo-restante" en tu HTML (por ejemplo un <div> debajo del formulario)
     setInterval(() => {
       const ahora = new Date().getTime();
       const diferencia = eventoFecha - ahora;
 
-      const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
-      const horas = Math.floor((diferencia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const dias    = Math.floor(diferencia / (1000 * 60 * 60 * 24));
+      const horas   = Math.floor((diferencia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
       const minutos = Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60));
-      const segundos = Math.floor((diferencia % (1000 * 60)) / 1000);
+      const segundos= Math.floor((diferencia % (1000 * 60)) / 1000);
 
       // Ejemplo de uso si tienes un elemento con id="tiempo-restante"
       const tiempoRestante = document.getElementById('tiempo-restante');
