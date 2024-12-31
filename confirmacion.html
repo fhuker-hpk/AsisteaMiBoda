@@ -2,88 +2,155 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Confirmación Exitosa</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Confirmación de Asistencia | Boda Juan David & Tatiana</title>
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link 
     href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Open+Sans:wght@400;700&display=swap" 
+    rel="stylesheet"
+  />
+
+  <!-- Íconos de Font Awesome -->
+  <link 
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" 
     rel="stylesheet" 
   />
 
   <style>
+    /* =======================================
+       ESTILOS GENERALES DE LA PÁGINA
+       ======================================= */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
 
-    body {
+    html, body {
       height: 100%;
       font-family: 'Open Sans', sans-serif;
-      background: url("fondo.jpg") center/cover no-repeat, #EAF7EA;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: #333;
+      background: transparent;
+      overflow-x: hidden;
     }
 
     body::before {
-      content: '';
+      content: "";
       position: absolute;
       inset: 0;
-      background: rgba(255, 255, 255, 0.7);
       z-index: -1;
+      background: url('fondo.jpg') no-repeat center center fixed;
+      background-size: cover;
+      background-color: rgba(0, 0, 0, 0.6);
+      mix-blend-mode: overlay;
+    }
+
+    header {
+      text-align: center;
+      color: #fff;
+      margin: 20px 0;
+    }
+
+    header h1 {
+      font-size: 2.8rem;
+      font-family: 'Dancing Script', cursive;
+    }
+
+    header p {
+      font-size: 1.3rem;
+      font-weight: 600;
     }
 
     main {
-      background: rgba(255, 255, 255, 0.95);
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 12px;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
       padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-      text-align: center;
-      animation: fadeIn 1.5s ease-out both;
       width: 90%;
-      max-width: 500px;
+      max-width: 700px;
+      margin: 20px auto;
+      text-align: center;
+      animation: fadeIn 1.2s ease-out;
+      position: relative;
+      z-index: 1; /* Para que quede encima del fondo */
     }
 
-    h1 {
-      font-family: 'Dancing Script', cursive;
+    .datos-boda {
+      margin-bottom: 30px;
+      color: #333;
+    }
+
+    .datos-boda h2 {
+      font-size: 1.6rem;
       color: #3a6b3f;
-      font-size: 2.5rem;
       margin-bottom: 10px;
     }
 
-    p {
-      font-size: 1.2rem;
-      margin-bottom: 20px;
-      color: #555;
-      line-height: 1.6;
+    .datos-boda ul {
+      list-style: none;
+      padding: 0;
     }
 
-    .opciones {
-      margin: 20px 0;
+    .datos-boda li {
+      margin: 8px 0;
+    }
+
+    .datos-boda .novios {
+      font-size: 1.4rem;
+      font-family: 'Dancing Script', cursive;
+      color: #79c280;
+    }
+
+    .fecha-limite {
+      margin-top: 15px;
+      font-size: 1.2rem;
+      color: #3a6b3f;
+      font-weight: bold;
+    }
+
+    .contador {
+      background: rgba(122, 193, 149, 0.9);
+      color: white;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 10px;
+      font-size: 1.5rem;
+      animation: pulse 2s infinite;
       display: flex;
-      flex-direction: column;
+      justify-content: space-around;
       gap: 10px;
     }
 
-    .opciones a {
-      padding: 10px 20px;
-      background: #79c280;
-      color: #fff;
-      border-radius: 5px;
-      text-decoration: none;
-      font-size: 1.2rem;
-      font-weight: bold;
-      transition: background 0.3s ease, transform 0.3s ease;
+    .contador div {
+      text-align: center;
     }
 
-    .opciones a:hover {
-      background: #68af6f;
-      transform: translateY(-2px);
+    .contador span {
+      display: block;
+      font-size: 2rem;
+      font-weight: bold;
+    }
+
+    iframe {
+      width: 100%;
+      height: 800px;
+      border: none;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.05);
+      }
+      100% {
+        transform: scale(1);
+      }
     }
 
     @keyframes fadeIn {
@@ -98,13 +165,112 @@
     }
 
     @media (max-width: 480px) {
-      h1 {
-        font-size: 2rem;
+      header h1 {
+        font-size: 2.2rem;
       }
-      p {
+
+      header p {
         font-size: 1rem;
       }
-      .opciones a {
+
+      main {
+        padding: 20px;
+      }
+
+      .datos-boda h2 {
+        font-size: 1.4rem;
+      }
+
+      .contador span {
+        font-size: 1.5rem;
+      }
+    }
+
+    /* =======================================
+       ESTILOS DEL POPUP DE CONFIRMACIÓN
+       ======================================= */
+    /* Fondo oscuro que cubre toda la pantalla */
+    #popup-confirmation {
+      display: none;           /* Oculto por defecto */
+      position: fixed;
+      inset: 0;
+      z-index: 9999;          /* Muy por encima del contenido */
+      background: rgba(0,0,0,0.6);
+      justify-content: center; /* Centramos el popup en horizontal */
+      align-items: center;     /* Centramos el popup en vertical */
+    }
+
+    /* Contenedor interno del popup */
+    #popup-container {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      text-align: center;
+      width: 90%;
+      max-width: 500px;
+      position: relative;
+      animation: fadeIn 0.8s ease-out both;
+      font-family: 'Open Sans', sans-serif;
+    }
+
+    #popup-container h1 {
+      font-family: 'Dancing Script', cursive;
+      color: #3a6b3f;
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+
+    #popup-container p {
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+      color: #555;
+      line-height: 1.6;
+    }
+
+    #popup-container .opciones {
+      margin: 20px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    #popup-container .opciones a {
+      padding: 10px 20px;
+      background: #79c280;
+      color: #fff;
+      border-radius: 5px;
+      text-decoration: none;
+      font-size: 1.2rem;
+      font-weight: bold;
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+
+    #popup-container .opciones a:hover {
+      background: #68af6f;
+      transform: translateY(-2px);
+    }
+
+    /* Botón para cerrar el popup (opcional) */
+    #close-popup-btn {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      background: none;
+      border: none;
+      font-size: 1.2rem;
+      cursor: pointer;
+      color: #333;
+    }
+
+    @media (max-width: 480px) {
+      #popup-container h1 {
+        font-size: 2rem;
+      }
+      #popup-container p {
+        font-size: 1rem;
+      }
+      #popup-container .opciones a {
         font-size: 1rem;
       }
     }
@@ -112,45 +278,157 @@
 </head>
 
 <body>
+  <header>
+    <h1>¡Nos Casamos!</h1>
+    <p>Juan David & Tatiana</p>
+  </header>
+
   <main>
-    <h1>¡Gracias por Confirmar!</h1>
-    <p id="mensaje-personalizado">
-      Estamos muy felices de saber que nos acompañarás en nuestro gran día.
-    </p>
-    <p>
-      Recuerda que la ceremonia será el <strong>01 de marzo de 2025</strong> a las 
-      <strong>6:00 PM</strong> en la Basílica Nuestra Señora de las Misericordias.
-      La recepción se realizará en el Mesón del Oso a las <strong>7:00 PM</strong>.
-    </p>
-    <div class="opciones">
-      <a href="https://www.google.com/maps?q=Basílica+Nuestra+Señora+de+las+Misericordias" target="_blank">
-        Ver Ubicación de la Ceremonia
-      </a>
-      <a href="https://www.google.com/maps?q=Mesón+del+Oso" target="_blank">
-        Ver Ubicación de la Recepción
-      </a>
-      <a href="index.html">Volver a la Página Principal</a>
+    <!-- Contador regresivo -->
+    <div class="contador" id="contador">
+      <div>
+        <span id="dias"></span>
+        Días
+      </div>
+      <div>
+        <span id="horas"></span>
+        Horas
+      </div>
+      <div>
+        <span id="minutos"></span>
+        Minutos
+      </div>
     </div>
+
+    <!-- Detalles de la boda -->
+    <div class="datos-boda">
+      <h2>Detalles de la Ceremonia</h2>
+      <ul>
+        <li class="novios">Juan David & Tatiana</li>
+        <li><i class="fa fa-calendar"></i> <strong>Fecha:</strong> 01 de marzo de 2025</li>
+        <li><i class="fa fa-clock"></i> <strong>Hora de la Ceremonia:</strong> 6:00 PM</li>
+        <li><i class="fa fa-map-marker-alt"></i> <strong>Lugar:</strong> Basílica Nuestra Señora de las Misericordias</li>
+      </ul>
+
+      <h2>Recepción</h2>
+      <ul>
+        <li><i class="fa fa-clock"></i> <strong>Hora:</strong> 7:00 PM</li>
+        <li><i class="fa fa-map-marker-alt"></i> <strong>Lugar:</strong> Mesón del Oso</li>
+      </ul>
+
+      <p class="fecha-limite">¡Confirma tu asistencia antes del 20 de febrero!</p>
+    </div>
+
+    <!-- Formulario de Google -->
+    <iframe 
+      src="https://docs.google.com/forms/d/e/1FAIpQLSe3z2Cm0P51K0DB0bokMhXpjhCFzqqGBRIEtL2eYoL65ge-sg/viewform?embedded=true" 
+      onload="setupFormRedirection()"
+    >
+    </iframe>
   </main>
 
+  <!-- =======================================
+       POPUP DE CONFIRMACIÓN (oculto al inicio)
+       ======================================= -->
+  <div id="popup-confirmation">
+    <div id="popup-container">
+      <!-- Botón para cerrar (opcional) -->
+      <button id="close-popup-btn" onclick="closePopup()">
+        <i class="fa fa-times"></i>
+      </button>
+
+      <h1>¡Gracias por Confirmar!</h1>
+      <p id="mensaje-personalizado">
+        Estamos muy felices de saber que nos acompañarás en nuestro gran día.
+      </p>
+      <p>
+        Recuerda que la ceremonia será el <strong>01 de marzo de 2025</strong> 
+        a las <strong>6:00 PM</strong> en la Basílica Nuestra Señora de las Misericordias.
+        La recepción se realizará en el Mesón del Oso a las <strong>7:00 PM</strong>.
+      </p>
+      <div class="opciones">
+        <a 
+          href="https://www.google.com/maps?q=Basílica+Nuestra+Señora+de+las+Misericordias" 
+          target="_blank"
+        >
+          Ver Ubicación de la Ceremonia
+        </a>
+        <a 
+          href="https://www.google.com/maps?q=Mesón+del+Oso" 
+          target="_blank"
+        >
+          Ver Ubicación de la Recepción
+        </a>
+        <a href="index.html">Volver a la Página Principal</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
   <script>
-    // Personaliza el mensaje si el nombre del usuario está disponible (por ejemplo, desde el almacenamiento local)
-    const nombreUsuario = localStorage.getItem('nombreUsuario'); // Guardado al confirmar
+    /* =========================
+       CONTADOR REGRESIVO
+       ========================= */
+    const eventoFecha = new Date("March 1, 2025 18:00:00").getTime();
+    const contador = document.getElementById("contador");
+
+    function actualizarContador() {
+      const ahora = new Date().getTime();
+      const diferencia = eventoFecha - ahora;
+
+      const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
+      const horas = Math.floor(
+        (diferencia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+      );
+      const minutos = Math.floor(
+        (diferencia % (1000 * 60 * 60)) / (1000 * 60)
+      );
+
+      document.getElementById("dias").textContent = dias;
+      document.getElementById("horas").textContent = horas;
+      document.getElementById("minutos").textContent = minutos;
+    }
+
+    setInterval(actualizarContador, 1000);
+
+    /* =========================
+       MOSTRAR POPUP AL ENVIAR FORM
+       ========================= */
+    function setupFormRedirection() {
+      const iframe = document.querySelector("iframe");
+      iframe.onload = () => {
+        const url = iframe.contentWindow.location.href;
+
+        // Si la URL del iframe incluye 'formResponse',
+        // significa que se envió el formulario
+        if (url.includes("formResponse")) {
+          // Ocultamos el iframe (opcional)
+          iframe.style.display = "none";
+          // Mostramos el popup
+          document.getElementById("popup-confirmation").style.display = "flex";
+        }
+      };
+    }
+
+    /* =========================
+       CERRAR EL POPUP (OPCIONAL)
+       ========================= */
+    function closePopup() {
+      document.getElementById("popup-confirmation").style.display = "none";
+      // Si quieres volver a mostrar el iframe, descomenta:
+      // document.querySelector("iframe").style.display = "block";
+    }
+
+    /* =========================
+       MENSAJE PERSONALIZADO (OPCIONAL)
+       Puedes guardar el nombre del usuario en localStorage
+       desde tu formulario o desde algún otro lugar.
+       ========================= */
+    const nombreUsuario = localStorage.getItem('nombreUsuario');
     if (nombreUsuario) {
-      document.getElementById('mensaje-personalizado').innerText = 
+      document.getElementById('mensaje-personalizado').innerText =
         `¡Gracias, ${nombreUsuario}, por confirmar tu asistencia! Estamos emocionados de verte.`;
     }
   </script>
- <script>
-  window.addEventListener("message", function(event) {
-    if (event.origin !== "https://fhuker-hpk.github.io/") {
-      return;
-    }
-    if (event.data === "redirect") {
-      window.location.href = "confirmacion.html";
-    }
-  }, false);
-</script>
-
 </body>
 </html>
