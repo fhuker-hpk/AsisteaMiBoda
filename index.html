@@ -2,6 +2,10 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
+  <!-- 
+    Asegúrate de incluir esta meta para que el navegador interprete
+    el ancho del dispositivo al renderizar la página en móviles 
+  -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Confirmación de Asistencia | Boda Juan David & Tatiana</title>
 
@@ -14,7 +18,10 @@
   />
 
   <style>
-    /* Reset básico */
+    /* 
+      RESET BÁSICO 
+      Ajustamos márgenes y relleno y establecemos box-sizing para facilitar cálculos de ancho/alto 
+    */
     * {
       margin: 0;
       padding: 0;
@@ -27,18 +34,23 @@
       color: #333;
     }
 
-    /* Fondo general */
+    /* 
+      Ajuste de tipografía base (utiliza unidades relativas como rem en lugar de px si quieres mayor flexibilidad)
+      Por ejemplo: font-size: 16px en body y luego usar rem 
+    */
     body {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+      font-size: 16px; 
+      line-height: 1.5;
       background: 
         url("fondo.jpg") 
         center/cover no-repeat, 
         #EAF7EA; 
       position: relative;
       animation: fadeIn 2.5s ease-out both;
+      /* 
+        Para mejorar la lectura en fondos con imágenes o colores, 
+        se puede aumentar un poco el contraste del overlay 
+      */
     }
     body::before {
       content: '';
@@ -48,24 +60,31 @@
       z-index: -1;
     }
 
-    /* Encabezado */
+    /* 
+      Encabezado 
+      Usamos margen y padding en lugar de margin-bottom solamente, 
+      para que se adapte mejor en pantallas pequeñas 
+    */
     header {
       text-align: center;
       color: #3a6b3f; /* Verde oscuro para los títulos */
-      margin-bottom: 20px;
+      margin: 20px 0;
       animation: fadeUp 2.5s ease-out both;
     }
     header h1 {
-      font-size: 2.8em;
+      font-size: 2.5rem; /* Ajuste de tamaño usando rem */
       font-family: 'Dancing Script', cursive;
       margin-bottom: 5px;
     }
     header p {
-      font-size: 1.3em;
+      font-size: 1.25rem; 
       font-weight: 600;
     }
 
-    /* Contenedor principal */
+    /* 
+      Contenedor principal 
+      Ajustamos ancho máximo y márgenes automáticos para que luzca mejor en diferentes dispositivos 
+    */
     main {
       background: rgba(255, 255, 255, 0.95);
       border-radius: 10px;
@@ -73,17 +92,21 @@
       padding: 30px;
       width: 90%;
       max-width: 500px;
+      margin: 20px auto;
       animation: fadeUp 2.5s ease-out 0.4s both;
     }
 
-    /* Sección de datos */
+    /* 
+      Sección de datos
+      Ajustamos tamaño de tipografía para pantallas más pequeñas 
+    */
     .datos-boda {
       margin-bottom: 25px;
       color: #555;
       line-height: 1.6;
     }
     .datos-boda h2 {
-      font-size: 1.6em;
+      font-size: 1.5rem;
       font-weight: bold;
       color: #3a6b3f;
       text-align: center;
@@ -98,7 +121,7 @@
       text-align: center;
     }
     .datos-boda .novios {
-      font-size: 1.3em;
+      font-size: 1.3rem;
       font-weight: bold;
       font-family: 'Dancing Script', cursive;
       color: #3a6b3f;
@@ -106,36 +129,42 @@
 
     .fecha-limite {
       margin-top: 15px;
-      font-size: 1.1em;
+      font-size: 1.1rem;
       text-align: center;
       color: #3a6b3f;
       font-weight: bold;
     }
 
-    /* Formulario */
+    /* 
+      Formulario 
+      Añadimos display flex, flex-direction, etc. para organizar columnas 
+    */
     form {
       display: flex;
       flex-direction: column;
+      gap: 15px; /* Espacio entre los elementos del formulario */
     }
     label {
-      margin-bottom: 5px;
       font-weight: bold;
       color: #3a6b3f; 
     }
     input {
       padding: 10px;
-      margin-bottom: 15px;
       border-radius: 5px;
       border: 1px solid #ccc;
-      font-size: 1em;
+      font-size: 1rem;
       transition: border-color 0.3s ease;
+      width: 100%;
     }
     input:focus {
       border-color: #79c280;
       outline: none;
     }
 
-    /* Botón en tono pastel verde */
+    /* 
+      Botón en tono pastel verde 
+      Añadimos un sutil efecto hover y focus 
+    */
     button {
       padding: 12px;
       background: #79c280; 
@@ -143,12 +172,14 @@
       border: none;
       border-radius: 5px;
       cursor: pointer;
-      font-size: 1.2em;
+      font-size: 1.2rem;
       transition: background 0.3s ease, transform 0.3s ease;
     }
-    button:hover {
+    button:hover,
+    button:focus {
       background: #68af6f;
       transform: translateY(-2px);
+      outline: none;
     }
 
     .success-message {
@@ -164,6 +195,9 @@
       margin-top: 10px;
     }
 
+    /* 
+      Animaciones 
+    */
     @keyframes fadeUp {
       0% {
         opacity: 0;
@@ -183,15 +217,28 @@
       }
     }
 
+    /* 
+      Media Queries 
+      Ajustamos algunos tamaños de fuente e interlineado para pantallas muy pequeñas 
+    */
     @media (max-width: 480px) {
       header h1 {
-        font-size: 2em;
+        font-size: 2rem;
+      }
+      header p {
+        font-size: 1rem;
       }
       main {
         padding: 20px;
       }
       button {
-        font-size: 1em;
+        font-size: 1rem;
+      }
+      .datos-boda h2 {
+        font-size: 1.3rem;
+      }
+      .datos-boda .novios {
+        font-size: 1.15rem;
       }
     }
   </style>
@@ -224,9 +271,24 @@
 
     <form id="confirmar-form">
       <label for="nombre">Nombre o Familia:</label>
-      <input type="text" id="nombre" name="nombre" placeholder="Ej. Familia García" required />
+      <input 
+        type="text" 
+        id="nombre" 
+        name="nombre" 
+        placeholder="Ej. Familia García" 
+        required 
+      />
+
       <label for="invitados">Número de Invitados:</label>
-      <input type="number" id="invitados" name="invitados" min="1" placeholder="Ej. 2" required />
+      <input 
+        type="number" 
+        id="invitados" 
+        name="invitados" 
+        min="1" 
+        placeholder="Ej. 2" 
+        required 
+      />
+
       <button type="submit">Confirmar Asistencia</button>
       <div id="error" class="error-message" style="display: none;"></div>
     </form>
@@ -239,15 +301,18 @@
       const nombre = document.getElementById('nombre').value.trim();
       const invitados = document.getElementById('invitados').value.trim();
 
+      // Validación simple
       if (!nombre || !invitados) {
-        document.getElementById('error').textContent = "Por favor, completa todos los campos.";
-        document.getElementById('error').style.display = "block";
+        const errorElement = document.getElementById('error');
+        errorElement.textContent = "Por favor, completa todos los campos.";
+        errorElement.style.display = "block";
         return;
       }
 
+      // Si todo está bien, ocultamos el mensaje de error
       document.getElementById('error').style.display = "none";
 
-      // Simular un envío exitoso y redirección
+      // Simulación de envío exitoso y redirección
       setTimeout(() => {
         window.location.href = "confirmacion.html";
       }, 1000);
