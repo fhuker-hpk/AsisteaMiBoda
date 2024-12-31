@@ -2,10 +2,10 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Página de confirmación de asistencia a la boda de Juan David y Tatiana. ¡No olvides confirmar tu asistencia y revisar los detalles del evento!"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Confirmación de Asistencia | Boda Juan David & Tatiana</title>
 
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Dancing+Script:600" />
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -38,6 +38,8 @@
       font-family: 'Open Sans', sans-serif;
       color: #333;
       background: transparent;
+      position: relative; /* Para que ::before se posicione correctamente */
+      overflow-x: hidden;
     }
 
     /*
@@ -51,9 +53,8 @@
       z-index: -1;
       background: url('fondo.jpg') no-repeat center center fixed;
       background-size: cover;
-      /* Capa transparente oscura para resaltar el contenido */
-      background-color: rgba(0, 0, 0, 0.5);
-      mix-blend-mode: overlay;
+      background-color: rgba(0, 0, 0, 0.5); /* Capa semitransparente */
+      /* mix-blend-mode: overlay; (opcional, queda a tu gusto) */
     }
 
     /*********************************************
@@ -64,7 +65,7 @@
       color: #3a6b3f;
       margin: 20px 0;
       /* Pequeña animación de entrada */
-      animation: fadeUp 2s ease-out both;
+      animation: fadeUp 1.5s ease-out both;
     }
 
     header h1 {
@@ -93,7 +94,6 @@
      * 4. CONTENEDOR PRINCIPAL
     *********************************************/
     main {
-      position: relative;
       background: rgba(255, 255, 255, 0.9);
       border-radius: 10px;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
@@ -101,7 +101,8 @@
       width: 90%;
       max-width: 600px;
       margin: 20px auto;
-      animation: fadeUp 2s ease-out 0.4s both;
+      animation: fadeUp 1.5s ease-out 0.4s both;
+      position: relative;
     }
 
     /*********************************************
@@ -127,6 +128,7 @@
 
     .datos-boda li {
       margin: 10px 0;
+      font-size: 1rem;
     }
 
     .datos-boda .novios {
@@ -136,12 +138,20 @@
       color: #3a6b3f;
     }
 
-    .fecha-limite {
+    /* Contador de tiempo */
+    #tiempo-restante {
       margin-top: 15px;
       font-size: 1.1rem;
       text-align: center;
       color: #3a6b3f;
       font-weight: bold;
+      padding: 10px 0;
+    }
+
+    .explicacion-contador {
+      font-size: 0.9rem;
+      color: #333;
+      margin-bottom: 5px;
     }
 
     /*********************************************
@@ -162,28 +172,28 @@
     /*********************************************
      * 7. BOTÓN DE CONFIRMACIÓN
     *********************************************/
-.contenedor {
-  text-align: center; /* Centra el contenido en el eje horizontal */
-}
+    .contenedor {
+      text-align: center;
+    }
 
-.btn-confirmacion {
-  display: inline-block; /* Asegura que el botón se comporta como un bloque en línea */
-  margin: 20px auto 0 auto; /* Centrado horizontal con espacio superior */
-  padding: 12px 20px; /* Añadir espacio dentro del botón */
-  background: #79c280; /* Color de fondo */
-  color: #fff; /* Color del texto */
-  border: none; /* Sin bordes */
-  border-radius: 5px; /* Bordes redondeados */
-  cursor: pointer; /* Cursor en forma de mano */
-  font-size: 1.2rem; /* Tamaño del texto */
-  transition: background 0.3s ease, transform 0.3s ease; /* Transiciones suaves para los efectos */
-  font-weight: bold; /* Negrita para el texto */
-}
+    .btn-confirmacion {
+      display: inline-block;
+      margin: 20px auto 0 auto;
+      padding: 12px 20px;
+      background: #79c280;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1.2rem;
+      transition: background 0.3s ease, transform 0.3s ease;
+      font-weight: bold;
+    }
 
-.btn-confirmacion:hover {
-  background: #68af6f; /* Cambio de color de fondo */
-  transform: translateY(-2px); /* Efecto de desplazamiento */
-}
+    .btn-confirmacion:hover {
+      background: #68af6f;
+      transform: translateY(-2px);
+    }
 
     /*********************************************
      * 8. RESPONSIVE (MÓVILES)
@@ -204,6 +214,9 @@
       .datos-boda .novios {
         font-size: 1.15rem;
       }
+      #tiempo-restante {
+        font-size: 1rem;
+      }
     }
 
     /*********************************************
@@ -216,7 +229,6 @@
       font-size: 0.9rem;
       font-weight: bold;
     }
-
   </style>
 </head>
 <body>
@@ -248,6 +260,11 @@
         </li>
       </ul>
 
+      <div class="explicacion-contador">
+        ¡Mira cuánto falta para el gran día!
+      </div>
+      <p id="tiempo-restante">Cargando contador...</p>
+
       <p class="fecha-limite">
         ¡Confirma tu asistencia antes del 20 de febrero!
       </p>
@@ -259,35 +276,45 @@
         src="https://docs.google.com/forms/d/e/1FAIpQLSe3z2Cm0P51K0DB0bokMhXpjhCFzqqGBRIEtL2eYoL65ge-sg/viewform?embedded=true"
         marginheight="0"
         marginwidth="0"
+        loading="lazy"
       >
         Cargando…
       </iframe>
     </div>
 
-    <!-- Botón para ir a la página de confirmación -->
-    <button class="btn-confirmacion" onclick="window.location.href='confirmacion.html'">
-      Conoce la ubicación
-    </button>
+    <!-- Botón para ir a la página de confirmación o ubicación -->
+    <div class="contenedor">
+      <button class="btn-confirmacion" onclick="window.location.href='confirmacion.html'">
+        Conoce la ubicación
+      </button>
+    </div>
   </main>
 
   <footer>
     Desarrollado por <strong>AbsolutamenteNadie hpk</strong>
   </footer>
 
-
+  <!-- Script del contador regresivo -->
   <script>
     const eventoFecha = new Date("March 1, 2025 18:00:00").getTime();
+
     setInterval(() => {
       const ahora = new Date().getTime();
       const diferencia = eventoFecha - ahora;
+
+      if (diferencia <= 0) {
+        document.getElementById('tiempo-restante').innerText = '¡Hoy es el gran día!';
+        return;
+      }
+
       const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
       const horas = Math.floor((diferencia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
       const minutos = Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60));
       const segundos = Math.floor((diferencia % (1000 * 60)) / 1000);
-      // Aquí puedes actualizar un elemento con id="tiempo-restante", por ejemplo:
-      // document.getElementById('tiempo-restante').innerText = `${dias}d ${horas}h ${minutos}m ${segundos}s`;
+
+      document.getElementById('tiempo-restante').innerText = 
+        `${dias}d ${horas}h ${minutos}m ${segundos}s`;
     }, 1000);
   </script>
-  -->
 </body>
 </html>
