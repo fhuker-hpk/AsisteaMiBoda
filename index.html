@@ -289,34 +289,34 @@
       <button type="submit">Confirmar Asistencia</button>
       <div id="error" class="error-message"></div>
     </form>
-<script>
-document.getElementById("weddingForm").addEventListener("submit", async (event) => {
-  event.preventDefault(); // Evita que se recargue la página
-  const formData = new FormData(event.target);
-  const data = Object.fromEntries(formData.entries()); // Convierte el formulario a un objeto JSON
-  try {
-    const response = await fetch("https://script.google.com/macros/s/AKfycbza80TCd2Zepjc9PVr_gvWFVM5jBMjqfknuWh4u0A8cchcXRMMAx7IOgX2iLKnc7Ys8eQ/exec", {
-      method: "POST",
-      body: JSON.stringify(data), // Envía los datos en formato JSON
-      headers: { "Content-Type": "application/json" },
+<script>document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("weddingForm");
+  if (form) {
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault(); // Evita que la página se recargue
+
+      const formData = new FormData(event.target);
+      const data = Object.fromEntries(formData.entries()); // Convierte los datos en JSON
+
+      try {
+        const response = await fetch("https://script.google.com/macros/s/AKfycbza80TCd2Zepjc9PVr_gvWFVM5jBMjqfknuWh4u0A8cchcXRMMAx7IOgX2iLKnc7Ys8eQ/exec", {
+          method: "POST",
+          body: JSON.stringify(data), // Envía datos en formato JSON
+          headers: { "Content-Type": "application/json" }, // Encabezado correcto
+        });
+        if (response.ok) {
+          alert("Formulario enviado con éxito");
+        } else {
+          alert("Hubo un problema al enviar el formulario");
+        }
+      } catch (error) {
+        alert("Error: " + error.message);
+      }
     });
-    if (response.ok) {
-      alert("Formulario enviado con éxito");
-    } else {
-      alert("Hubo un problema al enviar el formulario");
-    }
-  } catch (error) {
-    alert("Error: " + error.message);
+  } else {
+    console.error("Formulario con id 'weddingForm' no encontrado.");
   }
 });
-</script>
-    <!-- Contador regresivo para generar expectativa -->
-    <div id="contador">
-      <h3>Faltan:</h3>
-      <p id="tiempo-restante">Cargando...</p>
-    </div>
-  </main>
-
   <script>
     // --- 1. VALIDACIÓN EN TIEMPO REAL ---
     const nombreInput = document.getElementById('nombre');
