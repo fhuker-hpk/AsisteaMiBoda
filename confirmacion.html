@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>¡Asistencia Confirmada!</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link 
+    href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Open+Sans:wght@400;700&display=swap" 
+    rel="stylesheet" 
+  />
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html, body {
+      height: 100%;
+      font-family: 'Open Sans', sans-serif;
+      color: #333;
+    }
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: 
+        url("https://via.placeholder.com/1200x800?text=Imagen+Bonita+de+Confirmación") 
+        center/cover no-repeat, 
+        #EAF7EA;
+      position: relative;
+      animation: fadeIn 1.2s ease-out both;
+    }
+    body::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(255, 255, 255, 0.6);
+      z-index: -1;
+    }
+    
+    .mensaje-confirmacion {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      text-align: center;
+      max-width: 600px;
+      animation: fadeUp 1.2s ease-out 0.3s both;
+    }
+    .mensaje-confirmacion h1 {
+      font-family: 'Dancing Script', cursive;
+      font-size: 2.5em;
+      color: #3a6b3f;
+      margin-bottom: 10px;
+    }
+    .mensaje-confirmacion p {
+      font-size: 1.2em;
+      line-height: 1.6;
+      color: #333;
+      margin-bottom: 20px;
+    }
+    .mensaje-confirmacion .fecha-boda {
+      font-weight: bold;
+      font-size: 1.1em;
+      color: #3a6b3f;
+    }
+
+    @keyframes fadeUp {
+      0% {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="mensaje-confirmacion">
+    <h1>¡Asistencia Confirmada!</h1>
+    <p>Gracias por confirmar tu presencia. Será un día inolvidable, <br/> 
+       ¡te esperamos con mucha alegría para celebrar juntos!</p>
+
+    <p class="fecha-boda">
+      Recuerda: la boda será el <strong>01 de marzo de 2025</strong>, ¡no faltes!
+    </p>
+  </div>
+</body>
+</html>
