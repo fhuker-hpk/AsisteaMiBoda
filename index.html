@@ -293,7 +293,7 @@
 
   <!-- SCRIPT 1: Lógica para enviar datos a Google Apps Script -->
   <script>
-    document.addEventListener("DOMContentLoaded", () => {
+   document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("confirmar-form");
 
   if (form) {
@@ -304,18 +304,14 @@
       const data = Object.fromEntries(formData.entries()); // Convierte los datos en JSON
 
       try {
-        const response = await fetch(
-          "https://script.google.com/macros/s/AKfycbza80TCd2Zepjc9PVr_gvWFVM5jBMjqfknuWh4u0A8cchcXRMMAx7IOgX2iLKnc7Ys8eQ/exec",
-          {
-            method: "POST",
-            body: JSON.stringify(data), // Envía los datos como JSON
-            headers: { "Content-Type": "application/json" }, // Cabecera indicando JSON
-          }
-        );
+        const response = await fetch("http://localhost:3000/proxy", {
+          method: "POST",
+          body: JSON.stringify(data), // Envía los datos al proxy
+          headers: { "Content-Type": "application/json" },
+        });
 
         if (response.ok) {
-          // Procesa la respuesta del servidor
-          const result = await response.json(); // Asume que el servidor devuelve un JSON
+          const result = await response.json();
           alert("Formulario enviado con éxito: " + JSON.stringify(result));
         } else {
           alert("Hubo un problema al enviar el formulario");
@@ -324,8 +320,6 @@
         alert("Error: " + error.message);
       }
     });
-  } else {
-    console.error("Formulario con id 'confirmar-form' no encontrado.");
   }
 });
 
