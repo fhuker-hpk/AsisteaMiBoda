@@ -2,18 +2,27 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Confirmación de Asistencia | Boda Juan David & Tatiana</title>
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet" />
+  <link 
+    href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Open+Sans:wght@400;700&display=swap" 
+    rel="stylesheet"
+  />
+
   <!-- Íconos de Font Awesome -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" />
+  <link 
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" 
+    rel="stylesheet" 
+  />
 
   <style>
-    /* Estilos generales */
+    /* =======================================
+       ESTILOS GENERALES DE LA PÁGINA
+       ======================================= */
     * {
       margin: 0;
       padding: 0;
@@ -64,6 +73,8 @@
       margin: 20px auto;
       text-align: center;
       animation: fadeIn 1.2s ease-out;
+      position: relative;
+      z-index: 1; /* Para que quede encima del fondo */
     }
 
     .datos-boda {
@@ -174,6 +185,95 @@
         font-size: 1.5rem;
       }
     }
+
+    /* =======================================
+       ESTILOS DEL POPUP DE CONFIRMACIÓN
+       ======================================= */
+    /* Fondo oscuro que cubre toda la pantalla */
+    #popup-confirmation {
+      display: none;           /* Oculto por defecto */
+      position: fixed;
+      inset: 0;
+      z-index: 9999;          /* Muy por encima del contenido */
+      background: rgba(0,0,0,0.6);
+      justify-content: center; /* Centramos el popup en horizontal */
+      align-items: center;     /* Centramos el popup en vertical */
+    }
+
+    /* Contenedor interno del popup */
+    #popup-container {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      text-align: center;
+      width: 90%;
+      max-width: 500px;
+      position: relative;
+      animation: fadeIn 0.8s ease-out both;
+      font-family: 'Open Sans', sans-serif;
+    }
+
+    #popup-container h1 {
+      font-family: 'Dancing Script', cursive;
+      color: #3a6b3f;
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+
+    #popup-container p {
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+      color: #555;
+      line-height: 1.6;
+    }
+
+    #popup-container .opciones {
+      margin: 20px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    #popup-container .opciones a {
+      padding: 10px 20px;
+      background: #79c280;
+      color: #fff;
+      border-radius: 5px;
+      text-decoration: none;
+      font-size: 1.2rem;
+      font-weight: bold;
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+
+    #popup-container .opciones a:hover {
+      background: #68af6f;
+      transform: translateY(-2px);
+    }
+
+    /* Botón para cerrar el popup (opcional) */
+    #close-popup-btn {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      background: none;
+      border: none;
+      font-size: 1.2rem;
+      cursor: pointer;
+      color: #333;
+    }
+
+    @media (max-width: 480px) {
+      #popup-container h1 {
+        font-size: 2rem;
+      }
+      #popup-container p {
+        font-size: 1rem;
+      }
+      #popup-container .opciones a {
+        font-size: 1rem;
+      }
+    }
   </style>
 </head>
 
@@ -220,14 +320,55 @@
     </div>
 
     <!-- Formulario de Google -->
-    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSe3z2Cm0P51K0DB0bokMhXpjhCFzqqGBRIEtL2eYoL65ge-sg/viewform?embedded=true" onload="setupFormRedirection()"></iframe>
-
-    <script>function setupFormRedirection() { const iframe = document.querySelector("iframe"); iframe.onload = () => { const url = iframe.contentWindow.location.href; if (url.includes("formResponse")) { setTimeout(() => { iframe.contentWindow.postMessage("redirect", "https://tudominio.com"); }, 2000); } }; }
-    </script>
+    <iframe 
+      src="https://docs.google.com/forms/d/e/1FAIpQLSe3z2Cm0P51K0DB0bokMhXpjhCFzqqGBRIEtL2eYoL65ge-sg/viewform?embedded=true" 
+      onload="setupFormRedirection()"
+    >
+    </iframe>
   </main>
 
+  <!-- =======================================
+       POPUP DE CONFIRMACIÓN (oculto al inicio)
+       ======================================= -->
+  <div id="popup-confirmation">
+    <div id="popup-container">
+      <!-- Botón para cerrar (opcional) -->
+      <button id="close-popup-btn" onclick="closePopup()">
+        <i class="fa fa-times"></i>
+      </button>
+
+      <h1>¡Gracias por Confirmar!</h1>
+      <p id="mensaje-personalizado">
+        Estamos muy felices de saber que nos acompañarás en nuestro gran día.
+      </p>
+      <p>
+        Recuerda que la ceremonia será el <strong>01 de marzo de 2025</strong> 
+        a las <strong>6:00 PM</strong> en la Basílica Nuestra Señora de las Misericordias.
+        La recepción se realizará en el Mesón del Oso a las <strong>7:00 PM</strong>.
+      </p>
+      <div class="opciones">
+        <a 
+          href="https://www.google.com/maps?q=Basílica+Nuestra+Señora+de+las+Misericordias" 
+          target="_blank"
+        >
+          Ver Ubicación de la Ceremonia
+        </a>
+        <a 
+          href="https://www.google.com/maps?q=Mesón+del+Oso" 
+          target="_blank"
+        >
+          Ver Ubicación de la Recepción
+        </a>
+        <a href="index.html">Volver a la Página Principal</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
   <script>
-    // Configuración del contador regresivo
+    /* =========================
+       CONTADOR REGRESIVO
+       ========================= */
     const eventoFecha = new Date("March 1, 2025 18:00:00").getTime();
     const contador = document.getElementById("contador");
 
@@ -236,8 +377,12 @@
       const diferencia = eventoFecha - ahora;
 
       const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
-      const horas = Math.floor((diferencia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutos = Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60));
+      const horas = Math.floor(
+        (diferencia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+      );
+      const minutos = Math.floor(
+        (diferencia % (1000 * 60 * 60)) / (1000 * 60)
+      );
 
       document.getElementById("dias").textContent = dias;
       document.getElementById("horas").textContent = horas;
@@ -246,18 +391,43 @@
 
     setInterval(actualizarContador, 1000);
 
-    // Configuración para redirigir tras enviar el formulario
+    /* =========================
+       MOSTRAR POPUP AL ENVIAR FORM
+       ========================= */
     function setupFormRedirection() {
       const iframe = document.querySelector("iframe");
       iframe.onload = () => {
         const url = iframe.contentWindow.location.href;
 
+        // Si la URL del iframe incluye 'formResponse',
+        // significa que se envió el formulario
         if (url.includes("formResponse")) {
-          setTimeout(() => {
-            window.location.href = "confirmacion.html";
-          }, 2000);
+          // Ocultamos el iframe (opcional)
+          iframe.style.display = "none";
+          // Mostramos el popup
+          document.getElementById("popup-confirmation").style.display = "flex";
         }
       };
+    }
+
+    /* =========================
+       CERRAR EL POPUP (OPCIONAL)
+       ========================= */
+    function closePopup() {
+      document.getElementById("popup-confirmation").style.display = "none";
+      // Si quieres volver a mostrar el iframe, descomenta:
+      // document.querySelector("iframe").style.display = "block";
+    }
+
+    /* =========================
+       MENSAJE PERSONALIZADO (OPCIONAL)
+       Puedes guardar el nombre del usuario en localStorage
+       desde tu formulario o desde algún otro lugar.
+       ========================= */
+    const nombreUsuario = localStorage.getItem('nombreUsuario');
+    if (nombreUsuario) {
+      document.getElementById('mensaje-personalizado').innerText =
+        `¡Gracias, ${nombreUsuario}, por confirmar tu asistencia! Estamos emocionados de verte.`;
     }
   </script>
 </body>
