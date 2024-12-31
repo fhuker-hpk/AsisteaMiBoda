@@ -8,7 +8,7 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
+  <link 
     href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Open+Sans:wght@400;700&display=swap" 
     rel="stylesheet" 
   />
@@ -16,7 +16,7 @@
   <link 
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" 
     rel="stylesheet"
-  />
+/>
 
   <style>
     /*********************************************
@@ -60,13 +60,12 @@
     @keyframes fadeIn {
       0% {
         opacity: 0;
-        transform: translateY(30px);
       }
       100% {
         opacity: 1;
-        transform: translateY(0);
       }
     }
+
     @keyframes fadeUp {
       0% {
         opacity: 0;
@@ -77,19 +76,10 @@
         transform: translateY(0);
       }
     }
+
     @keyframes gradientMove {
       0% { background-position: 0% 50%; }
       100% { background-position: 100% 50%; }
-    }
-
-    /* Keyframes para el spinner y la animación de aparición */
-    @keyframes girar {
-      0% {
-        transform: rotate(0deg);
-      }
-      100% {
-        transform: rotate(360deg);
-      }
     }
 
     /*********************************************
@@ -337,49 +327,16 @@
       // Oculta el mensaje de error
       errorElement.style.display = "none";
 
-      // Guarda el nombre en localStorage (por si quieres usarlo en confirmacion.html)
+      // Guardamos el nombre en localStorage (por si quieres personalizar confirmacion.html)
       localStorage.setItem('nombreUsuario', nombre);
 
-      // Indicador de progreso: Pantalla de "procesando" con spinner
+      // Indicador de progreso: Pantalla de "procesando"
       document.querySelector('main').innerHTML = `
-        <div style="
-          display: flex; 
-          flex-direction: column; 
-          align-items: center; 
-          justify-content: center; 
-          gap: 1rem; 
-          margin-top: 50px;
-          animation: fadeIn 0.8s ease-out both;
-        ">
-          <h1 style="
-            color: #3a6b3f; 
-            font-family: 'Dancing Script', cursive; 
-            font-size: 2rem; 
-            margin-bottom: 0;
-          ">
-            Procesando tu confirmación...
-          </h1>
-
-          <!-- Spinner -->
-          <div style="
-            width: 60px; 
-            height: 60px; 
-            border: 8px solid rgba(0,0,0,0.1); 
-            border-top-color: #79c280; 
-            border-radius: 50%; 
-            animation: girar 1s linear infinite;
-          "></div>
-
-          <p style="
-            text-align: center; 
-            color: #555; 
-            margin-top: 0;
-          ">
-            Por favor espera un momento.
-          </p>
-        </div>
+        <h1 style="color: #3a6b3f; font-family: 'Dancing Script', cursive;">Procesando tu confirmación...</h1>
+        <p style="text-align: center; color: #555;">Por favor espera un momento.</p>
       `;
 
+      // Redirige a la página de confirmación después de 2 segundos
       setTimeout(() => {
         window.location.href = "confirmacion.html";
       }, 2000);
@@ -398,8 +355,7 @@
       const minutos = Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60));
       const segundos = Math.floor((diferencia % (1000 * 60)) / 1000);
 
-      tiempoRestante.innerText = 
-        \`${dias} días, \${horas} horas, \${minutos} minutos y \${segundos} segundos\`;
+      tiempoRestante.innerText = `${dias} días, ${horas} horas, ${minutos} minutos y ${segundos} segundos`;
     }, 1000);
   </script>
 </body>
