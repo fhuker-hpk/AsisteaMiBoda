@@ -20,7 +20,12 @@
       padding: 0;
       box-sizing: border-box;
     }
-
+.contador {
+      text-align: center;
+      margin: 30px 0;
+      font-size: 1.5rem;
+      color: #3a6b3f;
+  
     html, body {
       height: 100%;
       font-family: 'Open Sans', sans-serif;
@@ -120,7 +125,27 @@
   <h2>Faltan:</h2>
   <p id="contador-tiempo">Cargando...</p>
 </section>
-    <a href="index.html">Volver a la Página Principal</a>
+     <script>
+    const eventoFecha = new Date("March 1, 2025 18:00:00").getTime();
+    const contadorIntervalo = setInterval(() => {
+      const ahora = new Date().getTime();
+      const diferencia = eventoFecha - ahora;
+
+      const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
+      const horas = Math.floor((diferencia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutos = Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60));
+      const segundos = Math.floor((diferencia % (1000 * 60)) / 1000);
+
+      document.getElementById("contador-tiempo").innerText = 
+        `${dias} días, ${horas} horas, ${minutos} minutos y ${segundos} segundos`;
+
+      if (diferencia < 0) {
+        clearInterval(contadorIntervalo);
+        document.getElementById("contador-tiempo").innerText = "¡Es el gran día!";
+      }
+    }, 1000);
+  </script>
+    <a href="index.html">Volver a la Página Principal</a> 
   </main>
 </body>
 </html>
