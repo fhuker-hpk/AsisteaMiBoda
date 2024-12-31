@@ -19,143 +19,48 @@
   />
 
   <style>
-    /*********************************************
-     * 1. RESET BÁSICO
-    *********************************************/
+    /* Estilos básicos y diseño */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
-
-    /*********************************************
-     * 2. BASE
-    *********************************************/
     html, body {
       height: 100%;
       font-family: 'Open Sans', sans-serif;
       color: #333;
-      background: transparent; /* Fondo totalmente transparente */
+      background: #f7f7f7;
     }
-
-    /* 
-      Usamos un pseudo-elemento para el degradado pastel,
-      así mantenemos el "fondo transparente" del body.
-    */
     body::before {
       content: "";
       position: absolute;
       inset: 0;
       z-index: -1;
-      /* Cambiar el fondo a una imagen */
       background: url('fondo.jpg') no-repeat center center fixed;
       background-size: cover;
-      /* Capa transparente */
-      background-color: rgba(0, 0, 0, 0.5); /* Negro con 50% de opacidad */
-      mix-blend-mode: overlay; /* Mezcla los colores de la imagen y la capa */
+      background-color: rgba(0, 0, 0, 0.5);
+      mix-blend-mode: overlay;
     }
-
-    /*********************************************
-     * 3. ANIMACIONES
-    *********************************************/
-    @keyframes fadeIn {
-      0% {
-        opacity: 0;
-      }
-      100% {
-        opacity: 1;
-      }
-    }
-
-    @keyframes fadeUp {
-      0% {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes gradientMove {
-      0% { background-position: 0% 50%; }
-      100% { background-position: 100% 50%; }
-    }
-
-    /*********************************************
-     * 4. ENCABEZADO
-    *********************************************/
     header {
       text-align: center;
-      color: #3a6b3f; /* Verde oscuro elegante */
+      color: #3a6b3f;
       margin: 20px 0;
-      animation: fadeUp 2s ease-out both;
     }
     header h1 {
       font-size: 2.5rem;
       font-family: 'Dancing Script', cursive;
-      margin-bottom: 5px;
     }
     header p {
       font-size: 1.25rem;
-      font-weight: 600;
     }
-
-    /*********************************************
-     * 5. CONTENEDOR PRINCIPAL
-    *********************************************/
     main {
-      position: relative; 
-      /* background semi-blanco para resaltar contenido */
       background: rgba(255, 255, 255, 0.9);
       border-radius: 10px;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
       padding: 30px;
-      width: 90%;
       max-width: 500px;
       margin: 20px auto;
-      animation: fadeUp 2s ease-out 0.4s both;
     }
-
-    /*********************************************
-     * 6. SECCIÓN DETALLES DE LA BODA
-    *********************************************/
-    .datos-boda {
-      margin-bottom: 25px;
-      color: #555;
-      line-height: 1.6;
-      text-align: center;
-    }
-    .datos-boda h2 {
-      font-size: 1.5rem;
-      font-weight: bold;
-      color: #3a6b3f;
-      margin-bottom: 10px;
-    }
-    .datos-boda ul {
-      list-style: none;
-    }
-    .datos-boda li {
-      margin: 10px 0;
-    }
-    .datos-boda .novios {
-      font-size: 1.3rem;
-      font-weight: bold;
-      font-family: 'Dancing Script', cursive;
-      color: #3a6b3f;
-    }
-    .fecha-limite {
-      margin-top: 15px;
-      font-size: 1.1rem;
-      text-align: center;
-      color: #3a6b3f;
-      font-weight: bold;
-    }
-
-    /*********************************************
-     * 7. FORMULARIO
-    *********************************************/
     form {
       display: flex;
       flex-direction: column;
@@ -177,7 +82,6 @@
       border-color: #79c280;
       outline: none;
     }
-
     button {
       padding: 12px;
       background: #79c280; 
@@ -188,55 +92,15 @@
       font-size: 1.2rem;
       transition: background 0.3s ease, transform 0.3s ease;
     }
-    button:hover, button:focus {
+    button:hover {
       background: #68af6f;
-      transform: translateY(-2px);
-      outline: none;
     }
-
     .error-message {
       text-align: center;
       color: #E74C3C;
       font-weight: bold;
       margin-top: 10px;
-      display: none; /* se controla por JS */
-    }
-
-    /*********************************************
-     * 8. CONTADOR REGRESIVO
-    *********************************************/
-    #contador {
-      text-align: center;
-      margin: 20px 0;
-      font-size: 1.2rem;
-      color: #3a6b3f;
-    }
-    #contador h3 {
-      margin-bottom: 5px;
-    }
-
-    /*********************************************
-     * 9. MEDIA QUERIES (MÓVILES)
-    *********************************************/
-    @media (max-width: 480px) {
-      header h1 {
-        font-size: 2rem;
-      }
-      header p {
-        font-size: 1rem;
-      }
-      main {
-        padding: 20px;
-      }
-      button {
-        font-size: 1rem;
-      }
-      .datos-boda h2 {
-        font-size: 1.3rem;
-      }
-      .datos-boda .novios {
-        font-size: 1.15rem;
-      }
+      display: none;
     }
   </style>
 </head>
@@ -248,185 +112,66 @@
   </header>
 
   <main>
-    <!-- Sección con los detalles de la boda -->
-    <div class="datos-boda">
-      <h2>Detalles de la Ceremonia</h2>
-      <ul>
-        <li class="novios">Juan David & Tatiana</li>
-        <li><i class="fa fa-calendar"></i> <strong>Fecha:</strong> 01 de marzo de 2025</li>
-        <li><i class="fa fa-clock"></i> <strong>Hora de la Ceremonia:</strong> 6:00 PM</li>
-        <li><i class="fa fa-map-marker-alt"></i> <strong>Lugar:</strong> Basílica Nuestra Señora de las Misericordias</li>
-      </ul>
-      <h2>Recepción</h2>
-      <ul>
-        <li><i class="fa fa-clock"></i> <strong>Hora:</strong> 7:00 PM</li>
-        <li><i class="fa fa-map-marker-alt"></i> <strong>Lugar:</strong> Mesón del Oso</li>
-      </ul>
-      <p class="fecha-limite">¡Confirma tu asistencia antes del 20 de febrero!</p>
-    </div>
-
-    <!-- Formulario de confirmación -->
     <form id="confirmar-form">
       <label for="nombre">Nombre o Familia:</label>
-      <input 
-        type="text" 
-        id="nombre" 
-        name="nombre" 
-        placeholder="Ej. Familia García" 
-        required 
-      />
+      <input type="text" id="nombre" name="nombre" placeholder="Ej. Familia García" required />
 
       <label for="invitados">Número de Invitados:</label>
-      <input 
-        type="number" 
-        id="invitados" 
-        name="invitados" 
-        min="1" 
-        placeholder="Ej. 2" 
-        required 
-      />
+      <input type="number" id="invitados" name="invitados" min="1" placeholder="Ej. 2" required />
 
       <button type="submit">Confirmar Asistencia</button>
       <div id="error" class="error-message"></div>
     </form>
   </main>
 
-  <!-- SCRIPT 1: Lógica para enviar datos a Google Apps Script -->
+  <!-- Firebase App (Base) -->
+  <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js"></script>
+  <!-- Firebase Database -->
+  <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js"></script>
+
   <script>
-   document.addEventListener("DOMContentLoaded", () => {
-  const form = document.getElementById("confirmar-form");
+    // Configuración de Firebase
+    const firebaseConfig = {
+      apiKey: "AIzaSyDj2WoQAc5c_Aw3QmtkYnf9EPzzxe8rkKk",
+      authDomain: "confirmacionasistencia-80b6e.firebaseapp.com",
+      databaseURL: "https://confirmacionasistencia-80b6e-default-rtdb.firebaseio.com",
+      projectId: "confirmacionasistencia-80b6e",
+      storageBucket: "confirmacionasistencia-80b6e.appspot.com",
+      messagingSenderId: "822509551810",
+      appId: "1:822509551810:web:45daa4ff1d5a0c3d9f3b5b",
+    };
 
-  if (form) {
-    form.addEventListener("submit", async (event) => {
-      event.preventDefault(); // Evita que la página se recargue
+    // Inicializar Firebase
+    const app = firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
 
-      const formData = new FormData(event.target);
-      const data = Object.fromEntries(formData.entries()); // Convierte los datos en JSON
-
-      try {
-        const response = await fetch("http://localhost:3000/proxy", {
-          method: "POST",
-          body: JSON.stringify(data), // Envía los datos al proxy
-          headers: { "Content-Type": "application/json" },
-        });
-
-        if (response.ok) {
-          const result = await response.json();
-          alert("Formulario enviado con éxito: " + JSON.stringify(result));
-        } else {
-          alert("Hubo un problema al enviar el formulario");
-        }
-      } catch (error) {
-        alert("Error: " + error.message);
-      }
-    });
-  }
-});
-
-  </script>
-
-  <!-- SCRIPT 2: Validación, redirección y contador regresivo -->
-  <script>
-    // --- 1. VALIDACIÓN EN TIEMPO REAL ---
-    const nombreInput = document.getElementById('nombre');
-    const invitadosInput = document.getElementById('invitados');
-    const errorElement = document.getElementById('error');
-
-    nombreInput.addEventListener('input', () => {
-      nombreInput.style.borderColor = nombreInput.value.trim() ? '#79c280' : 'red';
-    });
-
-    invitadosInput.addEventListener('input', () => {
-      invitadosInput.style.borderColor = (invitadosInput.value > 0) ? '#79c280' : 'red';
-    });
-
-    // --- 2. PROCESAR FORMULARIO ---
-    document.getElementById('confirmar-form').addEventListener('submit', function(event) {
+    // Guardar datos al enviar el formulario
+    document.getElementById("confirmar-form").addEventListener("submit", (event) => {
       event.preventDefault();
 
-      const nombre = nombreInput.value.trim();
-      const invitados = invitadosInput.value.trim();
+      const nombre = document.getElementById("nombre").value.trim();
+      const invitados = document.getElementById("invitados").value.trim();
 
-      // Verifica que los campos no estén vacíos
+      // Validar los campos
       if (!nombre || !invitados) {
+        const errorElement = document.getElementById("error");
         errorElement.textContent = "Por favor, completa todos los campos.";
         errorElement.style.display = "block";
         return;
       }
 
-      // Oculta el mensaje de error
-      errorElement.style.display = "none";
-
-      // Guardamos el nombre en localStorage (por si quieres personalizar confirmacion.html)
-      localStorage.setItem('nombreUsuario', nombre);
-
-      // Indicador de progreso: Pantalla de "procesando"
-      document.querySelector('main').innerHTML = `
-        <h1 style="color: #3a6b3f; font-family: 'Dancing Script', cursive;">Procesando tu confirmación...</h1>
-        <p style="text-align: center; color: #555;">Por favor espera un momento.</p>
-      `;
-
-      // Redirige a la página de confirmación después de 2 segundos
-      setTimeout(() => {
-        window.location.href = "confirmacion.html";
-      }, 2000);
+      // Guardar en Firebase
+      db.ref("invitados").push({
+        nombre,
+        invitados,
+      }).then(() => {
+        alert("Datos guardados exitosamente.");
+        document.getElementById("confirmar-form").reset();
+      }).catch((error) => {
+        console.error("Error al guardar los datos:", error);
+        alert("Hubo un error al guardar los datos. Inténtalo de nuevo.");
+      });
     });
-
-    // --- 3. CONTADOR REGRESIVO ---
-    const eventoFecha = new Date("March 1, 2025 18:00:00").getTime();
-    const tiempoRestante = document.getElementById('tiempo-restante');
-
-    // Si tu HTML tiene un elemento con id="tiempo-restante", lo usas aquí:
-    setInterval(() => {
-      const ahora = new Date().getTime();
-      const diferencia = eventoFecha - ahora;
-
-      const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
-      const horas = Math.floor((diferencia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutos = Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60));
-      const segundos = Math.floor((diferencia % (1000 * 60)) / 1000);
-
-      if (tiempoRestante) {
-        tiempoRestante.innerText = `${dias} días, ${horas} horas, ${minutos} minutos y ${segundos} segundos`;
-      }
-    }, 1000);
   </script>
-<!-- Firebase App (base) -->
-<script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js"></script>
-<!-- Firebase Database -->
-<script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js"></script>
-<script>
-  // Configuración de Firebase
-  const firebaseConfig = {
-    apiKey: "TU_API_KEY",
-    authDomain: "TU_AUTH_DOMAIN",
-    databaseURL: "TU_DATABASE_URL",
-    projectId: "TU_PROJECT_ID",
-    storageBucket: "TU_STORAGE_BUCKET",
-    messagingSenderId: "TU_MESSAGING_SENDER_ID",
-    appId: "TU_APP_ID",
-  };
-
-  // Inicializar Firebase
-  const app = firebase.initializeApp(firebaseConfig);
-  const db = firebase.database();
-
-  // Guardar datos al enviar el formulario
-  document.getElementById("confirmar-form").addEventListener("submit", (event) => {
-    event.preventDefault();
-    const nombre = document.getElementById("nombre").value;
-    const invitados = document.getElementById("invitados").value;
-
-    db.ref("invitados").push({
-      nombre,
-      invitados,
-    }).then(() => {
-      alert("Datos guardados exitosamente.");
-    }).catch((error) => {
-      console.error("Error al guardar los datos:", error);
-    });
-  });
-</script>
-
 </body>
 </html>
