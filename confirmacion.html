@@ -133,24 +133,5 @@
     </div>
   </main>
 
-  <script>
-    // Personaliza el mensaje si el nombre del usuario está disponible (por ejemplo, desde el almacenamiento local)
-    const nombreUsuario = localStorage.getItem('nombreUsuario'); // Guardado al confirmar
-    if (nombreUsuario) {
-      document.getElementById('mensaje-personalizado').innerText = 
-        `¡Gracias, ${nombreUsuario}, por confirmar tu asistencia! Estamos emocionados de verte.`;
-    }
-  </script>
- <script>
-  window.addEventListener("message", function(event) {
-    if (event.origin !== "https://fhuker-hpk.github.io/") {
-      return;
-    }
-    if (event.data === "redirect") {
-      window.location.href = "confirmacion.html";
-    }
-  }, false);
-</script>
-
 </body>
 </html>
