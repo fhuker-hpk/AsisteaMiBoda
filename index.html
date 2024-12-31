@@ -221,6 +221,22 @@
       src="https://docs.google.com/forms/d/e/1FAIpQLSe3z2Cm0P51K0DB0bokMhXpjhCFzqqGBRIEtL2eYoL65ge-sg/viewform?embedded=true" 
       onload="setupFormRedirection()">
     </iframe>
+
+    <script>
+  function setupFormRedirection() {
+    const iframe = document.querySelector("iframe");
+    iframe.onload = () => {
+      const url = iframe.contentWindow.location.href;
+      // Checamos si la URL del iframe incluye "formResponse"
+      if (url.includes("formResponse")) {
+        // Esperamos 2 segundos (opcional) y redirigimos
+        setTimeout(() => {
+          window.location.href = "confirmacion.html";
+        }, 2000);
+      }
+    };
+  }
+</script>
   </main>
 
   <script>
@@ -235,12 +251,10 @@
       const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
       const horas = Math.floor((diferencia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
       const minutos = Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60));
-      const segundos = Math.floor((diferencia % (1000 * 60)) / 1000);
 
       document.getElementById("dias").textContent = dias;
       document.getElementById("horas").textContent = horas;
       document.getElementById("minutos").textContent = minutos;
-      document.getElementById("segundos").textContent = segundos;
     }
 
     setInterval(actualizarContador, 1000);
