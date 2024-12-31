@@ -42,18 +42,15 @@
       Usamos un pseudo-elemento para el degradado pastel,
       así mantenemos el "fondo transparente" del body.
     */
-    body::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: -1;
-      /* Degradado pastel en tonos verde/emerald */
-      background: linear-gradient(135deg, rgba(121,194,128,0.5), rgba(80,200,120,0.5));
-      /* Ajusta la intensidad con el alfa (0.5) según prefieras */
-      background-size: 200% 200%;
-      animation: gradientMove 12s infinite alternate ease-in-out;
-    }
-
+  body::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    /* Cambiar el fondo a una imagen */
+    background: url('ruta-de-tu-imagen.jpg') no-repeat center center fixed;
+    background-size: cover;
+  }
     /*********************************************
      * 3. ANIMACIONES
     *********************************************/
