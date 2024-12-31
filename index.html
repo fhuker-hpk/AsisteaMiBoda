@@ -358,6 +358,42 @@
       }
     }, 1000);
   </script>
+<!-- Firebase App (base) -->
+<script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js"></script>
+<!-- Firebase Database -->
+<script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js"></script>
+<script>
+  // Configuración de Firebase
+  const firebaseConfig = {
+  apiKey: "AIzaSyDj2WoQAc5c_Aw3QmtkYnf9EPzzxe8rkKk",
+  authDomain: "confirmacionasistencia-80b6e.firebaseapp.com",
+  databaseURL: "https://confirmacionasistencia-80b6e-default-rtdb.firebaseio.com",
+  projectId: "confirmacionasistencia-80b6e",
+  storageBucket: "confirmacionasistencia-80b6e.firebasestorage.app",
+  messagingSenderId: "822509551810",
+  appId: "1:822509551810:web:45daa4ff1d5a0c3d9f3b5b"
+};
+
+  // Inicializar Firebase
+  const app = firebase.initializeApp(firebaseConfig);
+  const db = firebase.database();
+
+  // Guardar datos al enviar el formulario
+  document.getElementById("confirmar-form").addEventListener("submit", (event) => {
+    event.preventDefault();
+    const nombre = document.getElementById("nombre").value;
+    const invitados = document.getElementById("invitados").value;
+
+    db.ref("invitados").push({
+      nombre,
+      invitados,
+    }).then(() => {
+      alert("Datos guardados exitosamente.");
+    }).catch((error) => {
+      console.error("Error al guardar los datos:", error);
+    });
+  });
+</script>
 
 </body>
 </html>
