@@ -2,8 +2,8 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>¡Asistencia Confirmada!</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Confirmación Recibida</title>
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -14,73 +14,74 @@
   />
 
   <style>
+    /* Estilo básico */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
+
     html, body {
       height: 100%;
       font-family: 'Open Sans', sans-serif;
       color: #333;
-    }
-    body {
       display: flex;
-      flex-direction: column;
-      align-items: center;
       justify-content: center;
+      align-items: center;
       background: 
-        url("https://via.placeholder.com/1200x800?text=Imagen+Bonita+de+Confirmación") 
+        url("fondo-confirmacion.jpg") 
         center/cover no-repeat, 
-        #EAF7EA;
-      position: relative;
-      animation: fadeIn 1.2s ease-out both;
+        #EAF7EA; 
     }
     body::before {
       content: '';
       position: absolute;
       inset: 0;
-      background: rgba(255, 255, 255, 0.6);
+      background: rgba(255, 255, 255, 0.7);
       z-index: -1;
     }
-    
-    .mensaje-confirmacion {
+
+    main {
       background: rgba(255, 255, 255, 0.95);
-      padding: 30px;
       border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      padding: 30px;
+      width: 90%;
+      max-width: 500px;
       text-align: center;
-      max-width: 600px;
-      animation: fadeUp 1.2s ease-out 0.3s both;
-    }
-    .mensaje-confirmacion h1 {
-      font-family: 'Dancing Script', cursive;
-      font-size: 2.5em;
-      color: #3a6b3f;
-      margin-bottom: 10px;
-    }
-    .mensaje-confirmacion p {
-      font-size: 1.2em;
-      line-height: 1.6;
-      color: #333;
-      margin-bottom: 20px;
-    }
-    .mensaje-confirmacion .fecha-boda {
-      font-weight: bold;
-      font-size: 1.1em;
-      color: #3a6b3f;
+      animation: fadeIn 2s ease-out both;
     }
 
-    @keyframes fadeUp {
-      0% {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    h1 {
+      font-family: 'Dancing Script', cursive;
+      color: #3a6b3f;
+      font-size: 2.5rem;
+      margin-bottom: 10px;
     }
+
+    p {
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+      color: #555;
+      line-height: 1.6;
+    }
+
+    a {
+      display: inline-block;
+      padding: 10px 20px;
+      background: #79c280;
+      color: #fff;
+      border-radius: 5px;
+      text-decoration: none;
+      font-size: 1.2rem;
+      font-weight: bold;
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+    a:hover {
+      background: #68af6f;
+      transform: translateY(-2px);
+    }
+
     @keyframes fadeIn {
       0% {
         opacity: 0;
@@ -89,17 +90,33 @@
         opacity: 1;
       }
     }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 2rem;
+      }
+      p {
+        font-size: 1rem;
+      }
+      a {
+        font-size: 1rem;
+      }
+    }
   </style>
 </head>
-<body>
-  <div class="mensaje-confirmacion">
-    <h1>¡Asistencia Confirmada!</h1>
-    <p>Gracias por confirmar tu presencia. Será un día inolvidable, <br/> 
-       ¡te esperamos con mucha alegría para celebrar juntos!</p>
 
-    <p class="fecha-boda">
-      Recuerda: la boda será el <strong>01 de marzo de 2025</strong>, ¡no faltes!
+<body>
+  <main>
+    <h1>¡Gracias por Confirmar!</h1>
+    <p>
+      Estamos muy emocionados de que nos acompañes en nuestro día especial.
+      Recuerda que la ceremonia será el <strong>01 de marzo de 2025</strong>
+      a las <strong>6:00 PM</strong> en la Basílica Nuestra Señora de las Misericordias.
     </p>
-  </div>
+    <p>
+      La recepción tendrá lugar en el Mesón del Oso a partir de las <strong>7:00 PM</strong>.
+    </p>
+    <a href="index.html">Volver a la Página Principal</a>
+  </main>
 </body>
 </html>
