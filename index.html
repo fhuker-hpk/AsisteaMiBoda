@@ -12,50 +12,84 @@
     href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Open+Sans:wght@400;700&display=swap" 
     rel="stylesheet" 
   />
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" />
+  <!-- Íconos de Font Awesome (opcional) -->
+  <link 
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" 
+    rel="stylesheet"
+/>
 
   <style>
+    /*********************************************
+     * 1. RESET BÁSICO
+    *********************************************/
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
 
+    /*********************************************
+     * 2. BASE
+    *********************************************/
     html, body {
       height: 100%;
       font-family: 'Open Sans', sans-serif;
       color: #333;
+      background: transparent; /* Fondo totalmente transparente */
     }
 
-    body {
-      font-size: 16px;
-      line-height: 1.5;
-      background: url("fondo.jpg") center/cover no-repeat, #EAF7EA;
-      position: relative;
-      animation: fadeIn 2.5s ease-out both;
-    }
+    /* 
+      Usamos un pseudo-elemento para el degradado pastel,
+      así mantenemos el "fondo transparente" del body.
+    */
     body::before {
-      content: '';
+      content: "";
       position: absolute;
       inset: 0;
-      background: rgba(255, 255, 255, 0.6);
       z-index: -1;
-      background: linear-gradient(90deg, #79c280, #3a6b3f);
-      background-size: 400% 400%;
-      animation: gradientMove 10s infinite;
+      /* Degradado pastel en tonos verde/emerald */
+      background: linear-gradient(135deg, rgba(121,194,128,0.5), rgba(80,200,120,0.5));
+      /* Ajusta la intensidad con el alfa (0.5) según prefieras */
+      background-size: 200% 200%;
+      animation: gradientMove 12s infinite alternate ease-in-out;
+    }
+
+    /*********************************************
+     * 3. ANIMACIONES
+    *********************************************/
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadeUp {
+      0% {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     @keyframes gradientMove {
       0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+      100% { background-position: 100% 50%; }
     }
 
+    /*********************************************
+     * 4. ENCABEZADO
+    *********************************************/
     header {
       text-align: center;
-      color: #3a6b3f;
+      color: #3a6b3f; /* Verde oscuro elegante */
       margin: 20px 0;
-      animation: fadeUp 2.5s ease-out both;
+      animation: fadeUp 2s ease-out both;
     }
     header h1 {
       font-size: 2.5rem;
@@ -67,36 +101,42 @@
       font-weight: 600;
     }
 
+    /*********************************************
+     * 5. CONTENEDOR PRINCIPAL
+    *********************************************/
     main {
-      background: rgba(255, 255, 255, 0.95);
+      position: relative; 
+      /* background semi-blanco para resaltar contenido */
+      background: rgba(255, 255, 255, 0.9);
       border-radius: 10px;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
       padding: 30px;
       width: 90%;
       max-width: 500px;
       margin: 20px auto;
-      animation: fadeUp 2.5s ease-out 0.4s both;
+      animation: fadeUp 2s ease-out 0.4s both;
     }
 
+    /*********************************************
+     * 6. SECCIÓN DETALLES DE LA BODA
+    *********************************************/
     .datos-boda {
       margin-bottom: 25px;
       color: #555;
       line-height: 1.6;
+      text-align: center;
     }
     .datos-boda h2 {
       font-size: 1.5rem;
       font-weight: bold;
       color: #3a6b3f;
-      text-align: center;
       margin-bottom: 10px;
     }
     .datos-boda ul {
       list-style: none;
-      padding: 0;
     }
     .datos-boda li {
       margin: 10px 0;
-      text-align: center;
     }
     .datos-boda .novios {
       font-size: 1.3rem;
@@ -104,7 +144,6 @@
       font-family: 'Dancing Script', cursive;
       color: #3a6b3f;
     }
-
     .fecha-limite {
       margin-top: 15px;
       font-size: 1.1rem;
@@ -113,6 +152,9 @@
       font-weight: bold;
     }
 
+    /*********************************************
+     * 7. FORMULARIO
+    *********************************************/
     form {
       display: flex;
       flex-direction: column;
@@ -156,26 +198,25 @@
       color: #E74C3C;
       font-weight: bold;
       margin-top: 10px;
+      display: none; /* se controla por JS */
     }
 
+    /*********************************************
+     * 8. CONTADOR REGRESIVO
+    *********************************************/
     #contador {
       text-align: center;
       margin: 20px 0;
       font-size: 1.2rem;
       color: #3a6b3f;
     }
-
-    @keyframes fadeUp {
-      0% {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    #contador h3 {
+      margin-bottom: 5px;
     }
 
+    /*********************************************
+     * 9. MEDIA QUERIES (MÓVILES)
+    *********************************************/
     @media (max-width: 480px) {
       header h1 {
         font-size: 2rem;
@@ -206,6 +247,7 @@
   </header>
 
   <main>
+    <!-- Sección con los detalles de la boda -->
     <div class="datos-boda">
       <h2>Detalles de la Ceremonia</h2>
       <ul>
@@ -219,11 +261,10 @@
         <li><i class="fa fa-clock"></i> <strong>Hora:</strong> 7:00 PM</li>
         <li><i class="fa fa-map-marker-alt"></i> <strong>Lugar:</strong> Mesón del Oso</li>
       </ul>
-      <p class="fecha-limite">
-        ¡Confirma tu asistencia antes del 20 de febrero!
-      </p>
+      <p class="fecha-limite">¡Confirma tu asistencia antes del 20 de febrero!</p>
     </div>
 
+    <!-- Formulario de confirmación -->
     <form id="confirmar-form">
       <label for="nombre">Nombre o Familia:</label>
       <input 
@@ -245,9 +286,10 @@
       />
 
       <button type="submit">Confirmar Asistencia</button>
-      <div id="error" class="error-message" style="display: none;"></div>
+      <div id="error" class="error-message"></div>
     </form>
 
+    <!-- Contador regresivo para generar expectativa -->
     <div id="contador">
       <h3>Faltan:</h3>
       <p id="tiempo-restante">Cargando...</p>
@@ -255,46 +297,54 @@
   </main>
 
   <script>
-    // Validación en tiempo real
+    // --- 1. VALIDACIÓN EN TIEMPO REAL ---
     const nombreInput = document.getElementById('nombre');
     const invitadosInput = document.getElementById('invitados');
+    const errorElement = document.getElementById('error');
 
     nombreInput.addEventListener('input', () => {
       nombreInput.style.borderColor = nombreInput.value.trim() ? '#79c280' : 'red';
     });
 
     invitadosInput.addEventListener('input', () => {
-      invitadosInput.style.borderColor = invitadosInput.value > 0 ? '#79c280' : 'red';
+      invitadosInput.style.borderColor = (invitadosInput.value > 0) ? '#79c280' : 'red';
     });
 
-    // Procesar formulario
+    // --- 2. PROCESAR FORMULARIO ---
     document.getElementById('confirmar-form').addEventListener('submit', function(event) {
       event.preventDefault();
 
       const nombre = nombreInput.value.trim();
       const invitados = invitadosInput.value.trim();
 
+      // Verifica que los campos no estén vacíos
       if (!nombre || !invitados) {
-        document.getElementById('error').textContent = "Por favor, completa todos los campos.";
-        document.getElementById('error').style.display = "block";
+        errorElement.textContent = "Por favor, completa todos los campos.";
+        errorElement.style.display = "block";
         return;
       }
 
-      document.getElementById('error').style.display = "none";
+      // Oculta el mensaje de error
+      errorElement.style.display = "none";
+
+      // Guardamos el nombre en localStorage (por si quieres personalizar confirmacion.html)
       localStorage.setItem('nombreUsuario', nombre);
 
+      // Indicador de progreso: Pantalla de "procesando"
       document.querySelector('main').innerHTML = `
-        <h1>Procesando tu confirmación...</h1>
-        <p>Por favor espera un momento.</p>
+        <h1 style="color: #3a6b3f; font-family: 'Dancing Script', cursive;">Procesando tu confirmación...</h1>
+        <p style="text-align: center; color: #555;">Por favor espera un momento.</p>
       `;
 
+      // Redirige a la página de confirmación después de 2 segundos
       setTimeout(() => {
         window.location.href = "confirmacion.html";
       }, 2000);
     });
 
-    // Contador regresivo
+    // --- 3. CONTADOR REGRESIVO ---
     const eventoFecha = new Date("March 1, 2025 18:00:00").getTime();
+    const tiempoRestante = document.getElementById('tiempo-restante');
 
     setInterval(() => {
       const ahora = new Date().getTime();
@@ -305,8 +355,7 @@
       const minutos = Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60));
       const segundos = Math.floor((diferencia % (1000 * 60)) / 1000);
 
-      document.getElementById('tiempo-restante').innerText = 
-        `${dias} días, ${horas} horas, ${minutos} minutos y ${segundos} segundos`;
+      tiempoRestante.innerText = `${dias} días, ${horas} horas, ${minutos} minutos y ${segundos} segundos`;
     }, 1000);
   </script>
 </body>
