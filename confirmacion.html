@@ -141,5 +141,16 @@
         `¡Gracias, ${nombreUsuario}, por confirmar tu asistencia! Estamos emocionados de verte.`;
     }
   </script>
+ <script>
+  window.addEventListener("message", function(event) {
+    if (event.origin !== "https://tudominio.com") {
+      return;
+    }
+    if (event.data === "redirect") {
+      window.location.href = "confirmacion.html";
+    }
+  }, false);
+</script>
+
 </body>
 </html>
