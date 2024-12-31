@@ -20,12 +20,7 @@
       padding: 0;
       box-sizing: border-box;
     }
-.contador {
-      text-align: center;
-      margin: 30px 0;
-      font-size: 1.5rem;
-      color: #3a6b3f;
-  
+
     html, body {
       height: 100%;
       font-family: 'Open Sans', sans-serif;
@@ -71,7 +66,21 @@
       line-height: 1.6;
     }
 
-    a {
+    .contador {
+      text-align: center;
+      margin: 30px 0;
+      font-size: 1.5rem;
+      color: #3a6b3f;
+    }
+
+    .botones-ubicacion {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin: 20px 0;
+    }
+
+    .botones-ubicacion a {
       display: inline-block;
       padding: 10px 20px;
       background: #79c280;
@@ -82,9 +91,16 @@
       font-weight: bold;
       transition: background 0.3s ease, transform 0.3s ease;
     }
-    a:hover {
+
+    .botones-ubicacion a:hover {
       background: #68af6f;
       transform: translateY(-2px);
+    }
+
+    .reloj {
+      font-size: 1.2rem;
+      margin-top: 20px;
+      color: #3a6b3f;
     }
 
     @keyframes fadeIn {
@@ -121,11 +137,36 @@
     <p>
       La recepción tendrá lugar en el Mesón del Oso a partir de las <strong>7:00 PM</strong>.
     </p>
+
+    <!-- Reloj dinámico -->
+    <div class="reloj" id="reloj"></div>
+
+    <!-- Contador regresivo -->
     <section class="contador">
-  <h2>Faltan:</h2>
-  <p id="contador-tiempo">Cargando...</p>
-</section>
-     <script>
+      <h2>Faltan:</h2>
+      <p id="contador-tiempo">Cargando...</p>
+    </section>
+
+    <!-- Botones de ubicación -->
+    <div class="botones-ubicacion">
+      <a href="https://www.google.com/maps?q=Basílica+Nuestra+Señora+de+las+Misericordias,+Santa+Rosa+de+Osos" target="_blank">Ver Ubicación de la Ceremonia</a>
+      <a href="https://www.google.com/maps?q=Mesón+del+Oso,+Santa+Rosa+de+Osos" target="_blank">Ver Ubicación de la Recepción</a>
+    </div>
+
+    <a href="index.html">Volver a la Página Principal</a> 
+  </main>
+
+  <script>
+    // Reloj en tiempo real
+    setInterval(() => {
+      const ahora = new Date();
+      const hora = ahora.getHours().toString().padStart(2, '0');
+      const minutos = ahora.getMinutes().toString().padStart(2, '0');
+      const segundos = ahora.getSeconds().toString().padStart(2, '0');
+      document.getElementById('reloj').innerText = `Hora actual: ${hora}:${minutos}:${segundos}`;
+    }, 1000);
+
+    // Contador regresivo
     const eventoFecha = new Date("March 1, 2025 18:00:00").getTime();
     const contadorIntervalo = setInterval(() => {
       const ahora = new Date().getTime();
@@ -145,7 +186,5 @@
       }
     }, 1000);
   </script>
-    <a href="index.html">Volver a la Página Principal</a> 
-  </main>
 </body>
 </html>
