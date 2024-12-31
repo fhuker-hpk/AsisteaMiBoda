@@ -255,8 +255,9 @@
 
     // Enviar los datos
     fetch('https://script.google.com/macros/s/AKfycbydrbXWgAJG1sMM-LQfHavcMVTo-7RggWo-MmuoJnnBlgOQ0j7SWB35I94pFXMKWKO5_g/exec', {
-        method: 'POST',
-        body: formData
+        body: JSON.stringify({ 
+    nombre: nombre, 
+    invitados: invitados 
     })
     .then(response => response.json())
     .then(data => {
